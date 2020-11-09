@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import javax.validation.constraints.NotNull;
+
 @Entity
 @Table(name = "usuario")
 public class Usuario {
@@ -26,20 +28,25 @@ public class Usuario {
 	private String nick;
 
 	@Column(name = "pass")
+	@NotNull
 	private String pass;
 
-	@Column(name = "correo")
+	@Column(name = "correo", unique = true)
 	private String correo;
 
-	@Column(name = "rol")
-	private String rol;
+	@Column(name = "roll")
+	@NotNull
+	private Roles roll;
+
+	@Column(name = "calificacionMedia")
+	private Integer calificacion;
 
 	public Usuario() {
 		super();
 	}
 
 	public Usuario(Integer idusuario, String nombre, String apellidos, String nick, String pass, String correo,
-			String rol) {
+			Roles roll, Integer calificacion) {
 		super();
 		this.idusuario = idusuario;
 		this.nombre = nombre;
@@ -47,14 +54,15 @@ public class Usuario {
 		this.nick = nick;
 		this.pass = pass;
 		this.correo = correo;
-		this.rol = rol;
+		this.roll = roll;
+		this.calificacion = calificacion;
 	}
 
 	public Integer getIdusuario() {
 		return idusuario;
 	}
 
-	public void setIdusuario(Integer idusuario) {
+	public void setidusuario(Integer idusuario) {
 		this.idusuario = idusuario;
 	}
 
@@ -98,20 +106,27 @@ public class Usuario {
 		this.correo = correo;
 	}
 
-	public String getRol() {
-		return rol;
+	public Roles getRoll() {
+		return roll;
 	}
 
-	public void setRol(String rol) {
-		this.rol = rol;
+	public void setRoll(Roles roll) {
+		this.roll = roll;
+	}
+
+	public Integer getCalificacion() {
+		return calificacion;
+	}
+
+	public void setCalificacion(Integer calificacion) {
+		this.calificacion = calificacion;
 	}
 
 	@Override
 	public String toString() {
-		return "Usuario [idusuario=" + idusuario + ", nombre=" + nombre + ", apellidos=" + apellidos + ", nick=" + nick
-				+ ", pass=" + pass + ", correo=" + correo + ", rol=" + rol + "]";
+		return "Usuario [idusuario=" + idusuario + ", nombre=" + nombre + ", apellidos=" + apellidos + ", nick="
+				+ nick + ", pass=" + pass + ", correo=" + correo + ", roll=" + roll + ", calificacion=" + calificacion
+				+ "]";
 	}
-
-
 
 }

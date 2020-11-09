@@ -1,0 +1,37 @@
+<br/>
+<h2 style="text-align: center;">Registro</h2>
+<br/>
+<div style="width: auto;height: 300px;" class="container">
+    <form [formGroup]="registro" class="form" (ngSubmit)="registrarse(registro)">
+        <fieldset class="fieldsett2">
+            <div class="form-group">
+                <label for="nombre" style="float: left;">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" formControlName="nombre" placeholder="Escribe tu nombre">
+            </div>
+            <div class="form-group">
+                <label for="apellidos" style="float: left;">Apellidos</label>
+                <input type="text" class="form-control" id="apellidos" name="apellidos" formControlName="apellidos" placeholder="Escribe tus apellidos">
+            </div>
+            <div class="form-group">
+                <label for="nick" style="float: left;">Nick</label>
+                <input type="text" class="form-control" id="nick" name="nick" formControlName="nick" placeholder="Escribe tu nick">
+            </div>
+            <div class="form-group">
+                <label for="correo" style="float: left;">Email</label>
+                <input type="text" class="form-control" id="correo" name="correo" formControlName="correo" placeholder="Escribe tu Email">
+            </div>
+            <div class="form-group">
+                <label for="pass" style="float: left;">Contraseña</label>
+                <input type="password" class="form-control" id="pass" name="pass" formControlName="pass" placeholder="Escribe tu contraseña">
+            </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" id="roll" name="roll" formControlName="roll">
+            </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" id="calificacion" name="calificacion" formControlName="calificacion">
+            </div>
+            <button type="submit" class="btn btn-success">Crear</button>
+        </fieldset>
+    </form>
+</div>
+<div style="height: 30rem;"></div>

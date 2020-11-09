@@ -1,0 +1,29 @@
+<div class="container" style="width: auto;height: 300px;">
+    <form [formGroup]="loginfor" class="form" (ngSubmit)="login(loginfor)">
+        <br/><br/><br/>
+        <fieldset class="fieldsett">
+            <br/><br/>
+            <h1 text-align="center">Iniciar sesión</h1>
+            <br/><br/>
+            <input type="text" class="form-control" id="correo" name="correo" formControlName="correo" placeholder="Escribe tu email.." />
+            <br/>
+            <br/>
+            <input type="password" class="form-control" id="pass" name="pass" formControlName="pass" placeholder="Escribe tu contraseña.." />
+            <br/>
+            <br/>
+            <button class="btn btn-success" type="submit">
+                Login
+                <i class="fas fa-envelope-square"></i>
+            </button>
+            <br/>
+            <br/>
+            <button class="btn btn-light" routerLink="registro">
+                Regístrate!
+                <i class="fas fa-user-plus"></i>
+            </button>
+            <br/><br/>
+        </fieldset>
+    </form>
+
+</div>
+<div style="height: 30rem;"></div>

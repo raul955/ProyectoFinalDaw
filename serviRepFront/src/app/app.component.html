@@ -1,0 +1,105 @@
+<body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <a class="navbar-brand" routerLink="/">
+            <img src="https://i.ibb.co/cgSBcmt/logo.png" class="logoCabecera" />
+        </a>
+
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav">
+                <div>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/">Inicio</a>
+                    </li>
+                </div>
+                <div>
+                    <li class="nav-item">
+                        <!-- Usuario visualiza su ticket -->
+                        <a class="nav-link" routerLink="mistickets">Mis Tickets</a>
+                    </li>
+                </div>
+                <div>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="contacto">Contacto</a>
+                    </li>
+                </div>
+                <div>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="ranking">Top Empleados</a>
+                    </li>
+                </div>
+                <div>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="aboutus">About Us</a>
+                    </li>
+                </div>
+                <div>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="foro">Foro</a>
+                    </li>
+                </div>
+                <div>
+                    <li class="nav-item">
+                        <!--Gestor todas las tareas-->
+                        <a class="nav-link" routerLink="visualizartodo">Visualizar Tareas</a>
+                    </li>
+                </div>
+                <div>
+                    <li class="nav-item">
+                        <!--Gestor crear tarea asignar a empleado-->
+                        <a class="nav-link" routerLink="crearticket">Crear Ticket</a>
+                    </li>
+                </div>
+                <div>
+                    <li class="nav-item">
+                        <!--Operario ver tareas modifica estado-->
+                        <a class="nav-link" routerLink="consultartareas">Consultar Tareas</a>
+                    </li>
+                </div>
+                <div>
+                    <li class="nav-item">
+                        <!-- Admin gestiona usuarios -->
+                        <a class="nav-link" routerLink="admin">Usuarios</a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <br/>
+        <div class="registrarseDiv" *ngIf="us.comprobarlogeado() == null">
+            <a class="nav-link fuentenav" routerLink="login">Login</a>
+        </div>
+        <div class="registrarseDiv" *ngIf="us.comprobarlogeado() == null">
+            <a class="nav-link fuentenav" routerLink="registro">Registarse</a>
+        </div>
+        <div class="registrarseDiv">
+            <a class="nav-link fuentenav" routerLink="/" (click)="desconectarse()">Desconectarse</a>
+        </div>
+    </nav>
+
+    <router-outlet></router-outlet>
+    <!-- Footer -->
+    <footer class="page-footer font-small mdb-color pt-4 colorFooter">
+        <div class="container">
+            <ul class="list-unstyled list-inline text-center">
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-fb mx-1" href="https://www.facebook.com">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-tw mx-1" href="https://www.twitter.com">
+                        <i class="fab fa-twitter"> </i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-gplus mx-1" href="https://www.instagram.com">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer-copyright text-center py-3">© 2020 Copyright</div>
+    </footer>
+</body>
