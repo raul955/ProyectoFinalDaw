@@ -1,5 +1,7 @@
 package com.serv.models;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,23 +24,23 @@ public class Tema {
 	
 	@Column(name = "descripcion")
 	private String descripcion;
+		
+	@Column(name = "estado")
+	private Boolean estado;
 	
-	@OneToMany(targetEntity = Empleado.class)
-	private Empleado emp;
-	
-	@OneToMany(targetEntity = Empleado.class)
-	private Usuario us;
-	
+	@OneToMany(targetEntity = Usuario.class)
+	private Set<Usuario> us;
+
 	public Tema() {
 		super();
 	}
 
-	public Tema(Integer idtema, String asunto, String descripcion, Empleado emp, Usuario us) {
+	public Tema(Integer idtema, String asunto, String descripcion, Boolean estado, Set<Usuario> us) {
 		super();
 		this.idtema = idtema;
 		this.asunto = asunto;
 		this.descripcion = descripcion;
-		this.emp = emp;
+		this.estado = estado;
 		this.us = us;
 	}
 
@@ -66,25 +68,25 @@ public class Tema {
 		this.descripcion = descripcion;
 	}
 
-	public Empleado getEmp() {
-		return emp;
+	public Boolean getEstado() {
+		return estado;
 	}
 
-	public void setEmp(Empleado emp) {
-		this.emp = emp;
+	public void setEstado(Boolean estado) {
+		this.estado = estado;
 	}
 
-	public Usuario getUs() {
+	public Set<Usuario> getUs() {
 		return us;
 	}
 
-	public void setUs(Usuario us) {
+	public void setUs(Set<Usuario> us) {
 		this.us = us;
 	}
 
 	@Override
 	public String toString() {
-		return "Tema [idtema=" + idtema + ", asunto=" + asunto + ", descripcion=" + descripcion + ", emp=" + emp
+		return "Tema [idtema=" + idtema + ", asunto=" + asunto + ", descripcion=" + descripcion + ", estado=" + estado
 				+ ", us=" + us + "]";
 	}
 

@@ -1,12 +1,13 @@
 package com.serv.models;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,31 +29,27 @@ public class Ticket {
 	private String comentarious;
 
 	@Column(name = "estado")
-	private String estado;
+	private Estado es;
 
 	@OneToMany(targetEntity = Usuario.class)
-	private Usuario us;
+	private Set<Usuario> us;
 
-	@OneToMany(targetEntity = Empleado.class)
-	private Empleado emp;
-
-	@OneToOne(targetEntity = Incidencia.class)
-	private Incidencia inc;
+	@OneToMany(targetEntity = Incidencia.class)
+	private Set<Incidencia> inc;
 
 	public Ticket() {
 		super();
 	}
 
-	public Ticket(Integer idticket, String detalle, String comentarioemp, String comentarious, String estado,
-			Usuario us, Empleado emp, Incidencia inc) {
+	public Ticket(Integer idticket, String detalle, String comentarioemp, String comentarious, Estado es,
+			Set<Usuario> us, Set<Incidencia> inc) {
 		super();
 		this.idticket = idticket;
 		this.detalle = detalle;
 		this.comentarioemp = comentarioemp;
 		this.comentarious = comentarious;
-		this.estado = estado;
+		this.es = es;
 		this.us = us;
-		this.emp = emp;
 		this.inc = inc;
 	}
 
@@ -88,43 +85,34 @@ public class Ticket {
 		this.comentarious = comentarious;
 	}
 
-	public String getEstado() {
-		return estado;
+	public Estado getEs() {
+		return es;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setEs(Estado es) {
+		this.es = es;
 	}
 
-	public Usuario getUs() {
+	public Set<Usuario> getUs() {
 		return us;
 	}
 
-	public void setUs(Usuario us) {
+	public void setUs(Set<Usuario> us) {
 		this.us = us;
 	}
 
-	public Empleado getEmp() {
-		return emp;
-	}
-
-	public void setEmp(Empleado emp) {
-		this.emp = emp;
-	}
-
-	public Incidencia getInc() {
+	public Set<Incidencia> getInc() {
 		return inc;
 	}
 
-	public void setInc(Incidencia inc) {
+	public void setInc(Set<Incidencia> inc) {
 		this.inc = inc;
 	}
 
 	@Override
 	public String toString() {
 		return "Ticket [idticket=" + idticket + ", detalle=" + detalle + ", comentarioemp=" + comentarioemp
-				+ ", comentarious=" + comentarious + ", estado=" + estado + ", us=" + us + ", emp=" + emp + ", inc="
-				+ inc + "]";
+				+ ", comentarious=" + comentarious + ", es=" + es + ", us=" + us + ", inc=" + inc + "]";
 	}
 
 }

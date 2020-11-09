@@ -1,5 +1,7 @@
 package com.serv.models;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,21 +19,21 @@ public class Calificaciones {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idcalificaciones;
 
+	@OneToMany( targetEntity=Usuario.class )
+	private Set<Usuario> usuario;
+	
 	@Column(name = "calificacion")
 	private Integer calificacion;
-
-	@OneToMany(targetEntity = Empleado.class)
-	private Empleado emp;
 
 	public Calificaciones() {
 		super();
 	}
 
-	public Calificaciones(Integer idcalificaciones, Integer calificacion, Empleado emp) {
+	public Calificaciones(Integer idcalificaciones, Set<Usuario> usuario, Integer calificacion) {
 		super();
 		this.idcalificaciones = idcalificaciones;
+		this.usuario = usuario;
 		this.calificacion = calificacion;
-		this.emp = emp;
 	}
 
 	public Integer getIdcalificaciones() {
@@ -42,6 +44,14 @@ public class Calificaciones {
 		this.idcalificaciones = idcalificaciones;
 	}
 
+	public Set<Usuario> getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Set<Usuario> usuario) {
+		this.usuario = usuario;
+	}
+
 	public Integer getCalificacion() {
 		return calificacion;
 	}
@@ -50,18 +60,10 @@ public class Calificaciones {
 		this.calificacion = calificacion;
 	}
 
-	public Empleado getEmp() {
-		return emp;
-	}
-
-	public void setEmp(Empleado emp) {
-		this.emp = emp;
-	}
-
 	@Override
 	public String toString() {
-		return "Calificaciones [idcalificaciones=" + idcalificaciones + ", calificacion=" + calificacion + ", emp="
-				+ emp + "]";
+		return "Calificaciones [idcalificaciones=" + idcalificaciones + ", usuario=" + usuario + ", calificacion="
+				+ calificacion + "]";
 	}
-
+	
 }

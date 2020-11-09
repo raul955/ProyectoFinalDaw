@@ -1,5 +1,7 @@
 package com.serv.models;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,24 +23,20 @@ public class Comentario {
 	private String descripcion;
 
 	@OneToMany(targetEntity = Usuario.class)
-	private Usuario us;
-	
-	@OneToMany(targetEntity = Empleado.class)
-	private Empleado emp;
+	private Set<Usuario> us;
 	
 	@OneToMany(targetEntity = Tema.class)
-	private Tema tema;
+	private Set<Tema> tema;
 
 	public Comentario() {
 		super();
 	}
 
-	public Comentario(Integer idcomentario, String descripcion, Usuario us, Empleado emp, Tema tema) {
+	public Comentario(Integer idcomentario, String descripcion, Set<Usuario> us, Set<Tema> tema) {
 		super();
 		this.idcomentario = idcomentario;
 		this.descripcion = descripcion;
 		this.us = us;
-		this.emp = emp;
 		this.tema = tema;
 	}
 
@@ -58,34 +56,26 @@ public class Comentario {
 		this.descripcion = descripcion;
 	}
 
-	public Usuario getUs() {
+	public Set<Usuario> getUs() {
 		return us;
 	}
 
-	public void setUs(Usuario us) {
+	public void setUs(Set<Usuario> us) {
 		this.us = us;
 	}
 
-	public Empleado getEmp() {
-		return emp;
-	}
-
-	public void setEmp(Empleado emp) {
-		this.emp = emp;
-	}
-
-	public Tema getTema() {
+	public Set<Tema> getTema() {
 		return tema;
 	}
 
-	public void setTema(Tema tema) {
+	public void setTema(Set<Tema> tema) {
 		this.tema = tema;
 	}
 
 	@Override
 	public String toString() {
-		return "Comentario [idcomentario=" + idcomentario + ", descripcion=" + descripcion + ", us=" + us + ", emp="
-				+ emp + ", tema=" + tema + "]";
+		return "Comentario [idcomentario=" + idcomentario + ", descripcion=" + descripcion + ", us=" + us + ", tema="
+				+ tema + "]";
 	}
 
 }

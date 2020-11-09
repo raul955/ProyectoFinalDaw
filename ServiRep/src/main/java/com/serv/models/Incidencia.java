@@ -1,5 +1,7 @@
 package com.serv.models;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,20 +24,24 @@ public class Incidencia {
 
 	@Column(name = "descripcion")
 	private String descripcion;
-
+	
 	@OneToMany(targetEntity = Usuario.class)
-	private Usuario us;
+	private Set<Usuario> us;
+	
+	@Column(name = "activo")
+	private Boolean activo;
 
 	public Incidencia() {
 		super();
 	}
 
-	public Incidencia(Integer idincidencia, String asunto, String descripcion, Usuario us) {
+	public Incidencia(Integer idincidencia, String asunto, String descripcion, Set<Usuario> us, Boolean activo) {
 		super();
 		this.idincidencia = idincidencia;
 		this.asunto = asunto;
 		this.descripcion = descripcion;
 		this.us = us;
+		this.activo = activo;
 	}
 
 	public Integer getIdincidencia() {
@@ -62,18 +68,26 @@ public class Incidencia {
 		this.descripcion = descripcion;
 	}
 
-	public Usuario getUs() {
+	public Set<Usuario> getUs() {
 		return us;
 	}
 
-	public void setUs(Usuario us) {
+	public void setUs(Set<Usuario> us) {
 		this.us = us;
+	}
+
+	public Boolean getActivo() {
+		return activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 
 	@Override
 	public String toString() {
 		return "Incidencia [idincidencia=" + idincidencia + ", asunto=" + asunto + ", descripcion=" + descripcion
-				+ ", us=" + us + "]";
+				+ ", us=" + us + ", activo=" + activo + "]";
 	}
 
 }
