@@ -19,12 +19,15 @@ public class Usuario {
 	private Integer idusuario;
 
 	@Column(name = "nombre")
+	@NotNull
 	private String nombre;
 
 	@Column(name = "apellidos")
+	@NotNull
 	private String apellidos;
 
 	@Column(name = "nick", unique = true)
+	@NotNull
 	private String nick;
 
 	@Column(name = "pass")
@@ -32,6 +35,7 @@ public class Usuario {
 	private String pass;
 
 	@Column(name = "correo", unique = true)
+	@NotNull
 	private String correo;
 
 	@Column(name = "roll")

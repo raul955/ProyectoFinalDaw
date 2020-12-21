@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Usuario } from '../usuario';
 import { UsuarioServiceService } from '../usuario-service.service';
 
@@ -16,12 +18,10 @@ export class RegistroComponent implements OnInit {
     apellidos: new FormControl('', [Validators.required, Validators.minLength(6)]),
     nick: new FormControl('', [Validators.required, Validators.minLength(5)]),
     correo: new FormControl('', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]),
-    pass: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    roll: new FormControl('', [Validators.required]),
-    calificacion: new FormControl(null, [Validators.required])
+    pass: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
 
-  constructor(private us: UsuarioServiceService) { }
+  constructor(private us: UsuarioServiceService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -37,12 +37,49 @@ export class RegistroComponent implements OnInit {
 
     console.log(this.usuario);
 
-    this.us.registrarse(this.usuario).subscribe(data => {
-    console.log("registro" + this.usuario.roll);
-    }, error => {
-      console.log('Error al añadir usuario', error);
+    this.us.registrarse(this.usuario).subscribe(data =>{
+      console.log(data); 
+      if(data == null){
+        Swal.fire({
+          icon: 'success',
+          title: 'Registrado con éxito',
+        })
+        this.router.navigate(['/']);
+      }
+    },error=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Nick o correo ya existente, por favor prueba otro.',
+      })
     });
 
   }
+
+  //Getters para recoger los errores del formulario y poder validarlos.
+
+  get nombre() {
+    return this.registro.get('nombre');
+  }
+  get apellidos() {
+    return this.registro.get('apellidos');
+  }
+  get nick() {
+    return this.registro.get('nick');
+  }
+  get correo() {
+    return this.registro.get('correo');
+  }
+
+  get pass() {
+    return this.registro.get('pass');
+  }
+  get roll() {
+    return this.registro.get('roll');
+  }
+  get calificacion() {
+    return this.registro.get('calificacion');
+  }
+  
 
 }

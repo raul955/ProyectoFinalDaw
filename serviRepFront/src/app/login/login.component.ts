@@ -44,4 +44,15 @@ export class LoginComponent implements OnInit {
 
   }
 
+
+  //Getters para recoger los errores del formulario y poder validarlos.
+  
+  get correo() {
+    return this.loginfor.get('correo');
+  }
+
+  get pass() {
+    return this.loginfor.get('pass');
+  }
+
 }

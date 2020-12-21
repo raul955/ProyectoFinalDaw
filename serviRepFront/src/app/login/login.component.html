@@ -5,10 +5,28 @@
             <br/><br/>
             <h1 text-align="center">Iniciar sesión</h1>
             <br/><br/>
-            <input type="text" class="form-control" id="correo" name="correo" formControlName="correo" placeholder="Escribe tu email.." />
+            <div class="form-group">
+                <label for="correo" style="float: left;" class="boldlogin">Escribe tu correo</label>
+                <input type="text" class="form-control" id="correo" name="correo" formControlName="correo" placeholder="Escribe tu email.." />
+                <div class="alert alert-warning" *ngIf="(correo.touched) && (correo.invalid)" style="margin-top: 5px;">
+                    <span *ngIf="correo.errors.required">Debe completar este campo</span>
+                    <span *ngIf="correo.errors.pattern">
+                    El correo debe tener un formato adecuado.
+                </span>
+                </div>
+            </div>
             <br/>
             <br/>
-            <input type="password" class="form-control" id="pass" name="pass" formControlName="pass" placeholder="Escribe tu contraseña.." />
+            <div class="form-group">
+                <label for="correo" style="float: left;" class="boldlogin">Escribe tu contraseña</label>
+                <input type="password" class="form-control" id="pass" name="pass" formControlName="pass" placeholder="Escribe tu contraseña.." />
+                <div class="alert alert-warning" *ngIf="(pass.touched) && (pass.invalid)" style="margin-top: 5px;">
+                    <span *ngIf="pass.errors.required">Debe completar este campo</span>
+                    <span *ngIf="pass.errors.minlength">
+                        Este campo requiere un tamaño mínimo de {{pass.errors.minlength.requiredLength}} caracteres.
+                    </span>
+                </div>
+            </div>
             <br/>
             <br/>
             <button class="btn btn-success" type="submit">
