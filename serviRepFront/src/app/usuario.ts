@@ -6,4 +6,5 @@ export class Usuario {
     pass: string;
     roll: number;
     calificacion: number; 
+    idusuario: number;
 }

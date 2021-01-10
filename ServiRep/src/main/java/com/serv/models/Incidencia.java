@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,7 +27,7 @@ public class Incidencia {
 	@Column(name = "descripcion")
 	private String descripcion;
 	
-	@OneToMany(targetEntity = Usuario.class)
+	@ManyToMany(targetEntity = Usuario.class)
 	private Set<Usuario> us;
 	
 	@Column(name = "activo")
@@ -38,6 +40,13 @@ public class Incidencia {
 	public Incidencia(Integer idincidencia, String asunto, String descripcion, Set<Usuario> us, Boolean activo) {
 		super();
 		this.idincidencia = idincidencia;
+		this.asunto = asunto;
+		this.descripcion = descripcion;
+		this.us = us;
+		this.activo = activo;
+	}
+	
+	public Incidencia(String asunto, String descripcion, Set<Usuario> us, Boolean activo) {
 		this.asunto = asunto;
 		this.descripcion = descripcion;
 		this.us = us;

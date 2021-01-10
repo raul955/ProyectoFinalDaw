@@ -11,30 +11,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.serv.models.Usuario;
-import com.serv.service.UsuarioService;
+import com.serv.models.Ticket;
+import com.serv.service.TicketService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(value="/usuario")
-public class UsuarioController {
+@RequestMapping(value="/ticket")
+public class TicketController {
 
 	@Autowired
-	UsuarioService us;
+	TicketService tick;
 	
-	@PostMapping("/registrarse")
-	public void addUsuario(@RequestBody Usuario usuario) {
-		us.addUsuario(usuario);
+	@PostMapping("/crearTicket/{idincidencia}/{idoperario}")
+	public void creatTicket(@RequestBody Ticket ticket, @PathVariable int idincidencia, @PathVariable int idoperario) {
+		tick.crearTicket(ticket, idincidencia, idoperario);
 	}
 	
-	@GetMapping("/login/{correo}/{pass}")
-	public Usuario logearse(@PathVariable String correo,@PathVariable String pass) {
-		return us.logearse(correo, pass);
+	@GetMapping("/cargartickets/{idusuario}")
+	public List<Ticket> getTicket(@PathVariable int idusuario){
+		
+		return tick.getTicket(idusuario);
 	}
 	
-	@GetMapping("/operarios")
-	public List<Usuario> getUsuarios(){
-		return us.getUsuarios();
-	}
-
 }

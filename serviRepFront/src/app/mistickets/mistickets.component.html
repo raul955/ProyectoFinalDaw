@@ -1,1 +1,52 @@
-<p>mistickets works!</p>
+<br/>
+<br/>
+<h3>Mis Incidencias</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Detalle</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Operario</th>
+            <th scope="col">Puntuar</th>
+            <th scope="col">Comentario</th>
+            <th scope="col">Comentario</th>
+            <th scope="col">Opciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        <tr *ngFor="let listaTicket of listaTickets">
+            <td>
+                {{listaTicket.detalle}}
+            </td>
+            <td>
+                {{listaTicket.estado}}
+            </td>
+            <td>
+                {{listaTicket.us[0].nombre}}
+            </td>
+            <td>
+                <select>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </td>
+            <td>
+                <input type="text" class="form-control" id="comentario" name="comentario" placeholder="Escribe un comentario">
+            </td>
+            <td>
+                <input type="text" class="form-control" id="comentarioemp" name="comentarioemp" placeholder="Escribe un comentario">
+            </td>
+            <td>
+                <button class="btn btn-success">
+                    Salvar
+                </button>
+            </td>
+        </tr>
+
+    </tbody>
+</table>

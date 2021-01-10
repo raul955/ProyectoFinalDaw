@@ -1,1 +1,33 @@
-<p>contacto works!</p>
+<br/>
+<h2 style="text-align: center;">Contacto</h2>
+<br/>
+<div style="width: auto;height: 300px;" class="container">
+    <form [formGroup]="contactoform" class="form" (ngSubmit)="creaticket(contactoform)">
+        <fieldset class="fieldsett2">
+            <div class="form-group">
+                <label for="asunto" style="float: left;">Asunto</label>
+                <input type="text" class="form-control" id="asunto" name="asunto" formControlName="asunto" placeholder="Escribe el asunto de la incidencia">
+                <div class="alert alert-warning" *ngIf="(asunto.touched) && (asunto.invalid)" style="margin-top: 5px;">
+                    <span *ngIf="asunto.errors.required">Debe completar este campo</span>
+                    <span *ngIf="descripcion.errors.minlength">
+                        Este campo requiere un tamaño mínimo de {{asunto.errors.minlength.requiredLength}} caracteres.
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="descripcion" style="float: left;">Descripción</label>
+                <textarea class="form-control" id="descripcion" rows="5" name="descripcion" formControlName="descripcion" placeholder="Describe detalladamente la incidencia..."></textarea>
+
+                <div class="alert alert-warning" *ngIf="(descripcion.touched) && (descripcion.invalid)" style="margin-top: 5px;">
+                    <span *ngIf="descripcion.errors.required">Debe completar este campo</span>
+                    <span *ngIf="descripcion.errors.minlength">
+                        Este campo requiere un tamaño mínimo de {{descripcion.errors.minlength.requiredLength}} caracteres.
+                    </span>
+                </div>
+            </div>
+
+            <button [disabled]="!contactoform.valid" type="submit" class="btn btn-success">Crear Incidencia</button>
+        </fieldset>
+    </form>
+</div>
+<div style="height: 30rem;"></div>

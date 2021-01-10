@@ -12,6 +12,10 @@ import { Usuario } from './usuario';
 export class AppComponent {
 
   title = 'serviRepFront';
+  admin = 'ADMIN';
+  gestor = 'GESTOR';
+  usuario = 'USUARIO';
+  operario = 'OPERARIO';
   
   constructor(public us: UsuarioServiceService, private router: Router) {}
 

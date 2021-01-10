@@ -45,6 +45,10 @@ comprobarlogeado(){
   }
 }
 
+getUsuarios(): Observable<any>{
+  return this.http.get<Usuario>(`${this.url}operarios`);
+}
+
 }
 
 

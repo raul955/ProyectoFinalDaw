@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,10 +31,10 @@ public class Ticket {
 	@Column(name = "estado")
 	private Estado es;
 
-	@OneToMany(targetEntity = Usuario.class)
+	@ManyToMany(targetEntity = Usuario.class)
 	private Set<Usuario> us;
 
-	@OneToMany(targetEntity = Incidencia.class)
+	@ManyToMany(targetEntity = Incidencia.class)
 	private Set<Incidencia> inc;
 
 	public Ticket() {
@@ -48,6 +48,14 @@ public class Ticket {
 		this.detalle = detalle;
 		this.comentarioemp = comentarioemp;
 		this.comentarious = comentarious;
+		this.es = es;
+		this.us = us;
+		this.inc = inc;
+	}
+	
+	public Ticket(String detalle,Estado es, Set<Usuario> us, Set<Incidencia> inc) {
+
+		this.detalle = detalle;
 		this.es = es;
 		this.us = us;
 		this.inc = inc;

@@ -1,9 +1,11 @@
 package com.serv.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.serv.models.Incidencia;
 import com.serv.models.Usuario;
 import com.serv.repository.UsuarioRepository;
 
@@ -22,6 +24,12 @@ public class UsuarioServiceImp implements UsuarioService{
 	@Override
 	public Usuario logearse(String correo, String pass) {
 		return usuarioRepository.logearse(correo, pass);
+	}
+
+	@Override
+	public List<Usuario> getUsuarios() {
+		
+		return usuarioRepository.getUsuarios();
 	}
 
 }

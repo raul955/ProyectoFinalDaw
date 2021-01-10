@@ -1,1 +1,97 @@
-<p>crearticket works!</p>
+<div class="selectionDiv">
+    <h3>Crear Tickets</h3>
+    <form [formGroup]="ticketform" class="form" (ngSubmit)="subirTicket(ticketform)">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID Incidencia</th>
+                    <th scope="col">Detalle</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Operario</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="idincidencia" name="idincidencia" formControlName="idincidencia" placeholder="ID">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <textarea class="form-control" id="detalle" rows="1" name="detalle" formControlName="detalle" placeholder="Detalle de la incidencia">
+
+                        </textarea>
+                        </div>
+                    </td>
+                    <td>
+                        <select id="estado" formControlName="estado">
+                        <option value="0">ASIGNADO</option>
+                        <option value="1">ENCURSO</option>
+                        <option value="2">PENDIENTEEXTERNO</option>
+                        <option value="3">RESUELTO</option>
+                    </select>
+                    </td>
+                    <td>
+                        <select id="operario" formControlName="operario">
+                        <option *ngFor="let listaUsuario of listaUsuarios" value="{{listaUsuario.idusuario}}">
+                            <span *ngIf="listaUsuario.roll.toString() == operario">{{listaUsuario.correo}}</span>
+                        </option>                                          
+                    </select>
+                    </td>
+                    <td>
+                        <button class="btn btn-success" type="submit">
+                    Crear Ticket
+                </button>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+    </form>
+
+    <br/>
+    <hr>
+    <br/>
+    <h3>Incidencias</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID Incidencia</th>
+                <th scope="col">Asunto</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor="let incidencia of incidencias">
+                <td>
+                    {{ incidencia.idincidencia }}
+                </td>
+                <td>
+                    {{ incidencia.asunto }}
+                </td>
+                <td>
+                    {{ incidencia.descripcion }}
+                </td>
+                <td>
+                    <button class="btn btn-warning" (click)="borrarInci(incidencia.idincidencia)">
+                    BORRAR
+                </button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <br/>
+    <hr>
+    <br/>
+
+
+</div>

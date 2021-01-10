@@ -15,18 +15,18 @@
                     </li>
                 </div>
                 <div>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == usuario || us.comprobarlogeado().roll.toString() == gestor || us.comprobarlogeado().roll.toString() == operario)">
                         <!-- Usuario visualiza su ticket -->
-                        <a class="nav-link" routerLink="mistickets">Mis Tickets</a>
+                        <a class="nav-link" routerLink="mistickets">Mis Incidencias</a>
                     </li>
                 </div>
                 <div>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == usuario || us.comprobarlogeado().roll.toString() == gestor || us.comprobarlogeado().roll.toString() == operario)">
                         <a class="nav-link" routerLink="contacto">Contacto</a>
                     </li>
                 </div>
                 <div>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == gestor || us.comprobarlogeado().roll.toString() == operario)">
                         <a class="nav-link" routerLink="ranking">Top Empleados</a>
                     </li>
                 </div>
@@ -36,30 +36,30 @@
                     </li>
                 </div>
                 <div>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == usuario || us.comprobarlogeado().roll.toString() == gestor || us.comprobarlogeado().roll.toString() == operario)">
                         <a class="nav-link" routerLink="foro">Foro</a>
                     </li>
                 </div>
                 <div>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == gestor)">
                         <!--Gestor todas las tareas-->
                         <a class="nav-link" routerLink="visualizartodo">Visualizar Tareas</a>
                     </li>
                 </div>
                 <div>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == gestor)">
                         <!--Gestor crear tarea asignar a empleado-->
                         <a class="nav-link" routerLink="crearticket">Crear Ticket</a>
                     </li>
                 </div>
                 <div>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == operario)">
                         <!--Operario ver tareas modifica estado-->
-                        <a class="nav-link" routerLink="consultartareas">Consultar Tareas</a>
+                        <a class="nav-link" routerLink="consultartareas">Consultar Tickets</a>
                     </li>
                 </div>
                 <div>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="us.comprobarlogeado() != null && us.comprobarlogeado().roll.toString() == admin">
                         <!-- Admin gestiona usuarios -->
                         <a class="nav-link" routerLink="admin">Usuarios</a>
                     </li>
@@ -73,7 +73,7 @@
         <div class="registrarseDiv" *ngIf="us.comprobarlogeado() == null">
             <a class="nav-link fuentenav" routerLink="registro">Registarse</a>
         </div>
-        <div class="registrarseDiv">
+        <div class="registrarseDiv" *ngIf="us.comprobarlogeado() != null">
             <a class="nav-link fuentenav" routerLink="/" (click)="desconectarse()">Desconectarse</a>
         </div>
     </nav>
