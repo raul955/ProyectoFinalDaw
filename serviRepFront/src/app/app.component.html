@@ -73,6 +73,7 @@
         <div class="registrarseDiv" *ngIf="us.comprobarlogeado() == null">
             <a class="nav-link fuentenav" routerLink="registro">Registarse</a>
         </div>
+        <span style="color: #48C9B0;" *ngIf="us.comprobarlogeado() != null">Usuario: {{us.comprobarlogeado().nick.toString()}}</span>
         <div class="registrarseDiv" *ngIf="us.comprobarlogeado() != null">
             <a class="nav-link fuentenav" routerLink="/" (click)="desconectarse()">Desconectarse</a>
         </div>

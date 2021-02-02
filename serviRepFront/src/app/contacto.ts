@@ -4,4 +4,5 @@ export class Contacto {
     usuario: any;
     activo: boolean;
     idincidencia: number;
+    creado: number;
 }

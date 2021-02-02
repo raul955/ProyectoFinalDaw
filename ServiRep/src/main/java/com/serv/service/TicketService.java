@@ -11,6 +11,8 @@ public interface TicketService {
 	
 	List<Ticket> getTicket(int idusuario);
 
+	void añadirComentarioCalificacionTicket(int idticket, String comentario, int calificacion, int idusuario);
 	
+	List<Ticket> getTodosLosTicket();
 	
 }

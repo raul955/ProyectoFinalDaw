@@ -1,1 +1,48 @@
-<p>visualizartodo works!</p>
+<h2>Todos los tickets</h2>
+<form [formGroup]="todoform" class="form">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Detalle</th>
+                <th scope="col">Operario</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor="let listaTicket of listaTickets">
+                <td id="idticket" value="listaTicket.idticket">
+                    {{listaTicket.idticket}}
+                </td>
+                <td id="detalle" value="listaTicket.detalle">
+                    {{listaTicket.detalle}}
+                </td>
+                <td>
+                    <select id="operario" formControlName="operario">
+                        <option *ngFor="let listaUsuario of listaUsuarios" value="{{listaUsuario.correo}}">
+                            <span *ngIf="listaUsuario.roll.toString() == operario">{{listaUsuario.correo}}</span>
+                        </option>                                          
+                    </select>
+                </td>
+                <td id="estado">
+                    <select required formControlName="estado"> 
+                        <option value="1" selected>ASIGNADO</option>
+                        <option value="2">ENCURSO</option>
+                        <option value="3">PENDIENTEEXTERNO</option>
+                        <option value="4">RESUELTO</option>
+
+                        </select>
+                </td>
+
+                <td>
+                    <button class="btn btn-success" type="submit">
+                    Salvar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

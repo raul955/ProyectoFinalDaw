@@ -7,9 +7,11 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.serv.models.Calificaciones;
 import com.serv.models.Incidencia;
 import com.serv.models.Ticket;
 import com.serv.models.Usuario;
+import com.serv.repository.CalificacionesRepository;
 import com.serv.repository.IncidenciaRepository;
 import com.serv.repository.TicketRepository;
 import com.serv.repository.UsuarioRepository;
@@ -26,6 +28,9 @@ public class TicketServiceImp implements TicketService{
 	@Autowired
 	TicketRepository ticketrep;
 	
+	@Autowired
+	CalificacionesRepository calificacionrep;
+	
 	@Override
 	public void crearTicket(Ticket ticket, int idincidencia, int idusuario) {
 		
@@ -38,6 +43,9 @@ public class TicketServiceImp implements TicketService{
 		us.add(user);
 		in.add(inc);
 		
+		inc.setCreado(true);
+		incidenciarep.save(inc);
+		
 		Ticket ticketero = new Ticket(ticket.getDetalle(),ticket.getEs(),us,in);
 		ticketrep.save(ticketero);
 		
@@ -47,6 +55,31 @@ public class TicketServiceImp implements TicketService{
 	public List<Ticket> getTicket(int idusuario) {
 		
 		return ticketrep.getTicket(idusuario);
+	}
+
+	@Override
+	public void añadirComentarioCalificacionTicket(int idticket, String comentario, int calificacion, int idusuario) {
+		
+		Set <Usuario> us = new HashSet<>();	
+		Usuario user = usuariorep.getOne(idusuario);
+		us.add(user);
+		
+		Ticket t = ticketrep.getOne(idticket);
+		
+		t.setComentarious(comentario);
+		ticketrep.save(t);
+		
+		Calificaciones c = new Calificaciones();
+		c.setCalificacion(calificacion);
+		c.setUsuario(us);
+		calificacionrep.save(c);
+		
+	}
+
+	@Override
+	public List<Ticket> getTodosLosTicket() {
+		
+		return ticketrep.getTodosLosTicket();
 	}
 
 }

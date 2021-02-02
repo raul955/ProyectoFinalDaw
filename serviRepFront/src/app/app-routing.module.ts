@@ -17,14 +17,14 @@ import { VisualizartodoComponent } from './visualizartodo/visualizartodo.compone
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'aboutus', component: AboutusComponent},
-  {path: 'consultartareas', component: ConsultartareasComponent},
+  {path: 'visualizartodo', component: ConsultartareasComponent},
   {path: 'contacto', component: ContactoComponent},
   {path: 'crearticket', component: CrearticketComponent},
   {path: 'foro', component: ForoComponent},
   {path: 'login', component: LoginComponent},
   {path: 'registro', component: RegistroComponent},
   {path: 'ranking', component: RankingComponent},
-  {path: 'visualizartodo', component: VisualizartodoComponent},
+  {path: 'consultartareas', component: VisualizartodoComponent},
   {path: 'mistickets', component: MisticketsComponent},
   {path: 'admin', component: AdminComponent}
 ];

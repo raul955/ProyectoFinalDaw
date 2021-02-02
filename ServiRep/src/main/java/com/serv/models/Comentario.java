@@ -78,4 +78,47 @@ public class Comentario {
 				+ tema + "]";
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + ((idcomentario == null) ? 0 : idcomentario.hashCode());
+		result = prime * result + ((tema == null) ? 0 : tema.hashCode());
+		result = prime * result + ((us == null) ? 0 : us.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Comentario other = (Comentario) obj;
+		if (descripcion == null) {
+			if (other.descripcion != null)
+				return false;
+		} else if (!descripcion.equals(other.descripcion))
+			return false;
+		if (idcomentario == null) {
+			if (other.idcomentario != null)
+				return false;
+		} else if (!idcomentario.equals(other.idcomentario))
+			return false;
+		if (tema == null) {
+			if (other.tema != null)
+				return false;
+		} else if (!tema.equals(other.tema))
+			return false;
+		if (us == null) {
+			if (other.us != null)
+				return false;
+		} else if (!us.equals(other.us))
+			return false;
+		return true;
+	}
+
 }

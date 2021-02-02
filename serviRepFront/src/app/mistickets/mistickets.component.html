@@ -1,52 +1,61 @@
 <br/>
 <br/>
 <h3>Mis Incidencias</h3>
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Detalle</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Operario</th>
-            <th scope="col">Puntuar</th>
-            <th scope="col">Comentario</th>
-            <th scope="col">Comentario</th>
-            <th scope="col">Opciones</th>
-        </tr>
-    </thead>
 
-    <tbody>
+<form [formGroup]="salvarForm" class="form" (ngSubmit)="salvarComentario(salvarForm)">
+    <table class="table" *ngIf="listaTickets != null">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Detalle</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Operario</th>
+                <th scope="col" style="display:none;">Operario</th>
+                <th scope="col">Puntuar</th>
+                <th scope="col">Comentario</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
 
-        <tr *ngFor="let listaTicket of listaTickets">
-            <td>
-                {{listaTicket.detalle}}
-            </td>
-            <td>
-                {{listaTicket.estado}}
-            </td>
-            <td>
-                {{listaTicket.us[0].nombre}}
-            </td>
-            <td>
-                <select>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+        <tbody>
+
+            <tr *ngFor="let listaTicket of listaTickets">
+                <td id="funcionaporfavor" value="listaTicket.idticket">
+                    {{listaTicket.idticket}}
+                </td>
+                <td>
+                    {{listaTicket.detalle}}
+                </td>
+                <td>
+                    {{listaTicket.estado}}
+                </td>
+                <td id="idoperario" value="listaTicket.us[0].idusuario" style="display:none;">
+                    {{listaTicket.us[0].idusuario}}
+                </td>
+                <td>
+                    {{listaTicket.us[0].nombre}}
+                </td>
+                <td>
+                    <select required formControlName="calificacion"> 
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                 </select>
-            </td>
-            <td>
-                <input type="text" class="form-control" id="comentario" name="comentario" placeholder="Escribe un comentario">
-            </td>
-            <td>
-                <input type="text" class="form-control" id="comentarioemp" name="comentarioemp" placeholder="Escribe un comentario">
-            </td>
-            <td>
-                <button class="btn btn-success">
-                    Salvar
-                </button>
-            </td>
-        </tr>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="comentario" name="comentario" formControlName="comentario" placeholder="Escribe un comentario">
 
-    </tbody>
-</table>
+                    </div>
+                </td>
+                <td>
+                    <button class="btn btn-success" type="submit">
+                    Salvar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

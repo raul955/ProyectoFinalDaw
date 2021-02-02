@@ -20,4 +20,12 @@ export class TicketService {
   getTicketUsuarios(idusuario: number): Observable<any> {
     return this.http.get<Usuario>(`${this.url}cargartickets/${idusuario}`);
   }
+
+  agregarcomentarioycalificacion(t: Ticket, idticket: number, comentario: String, calificacion: number, idusuario: number): Observable<any> {
+    return this.http.post(`${this.url}agregarcomentarioycalificacion/${idticket}/${comentario}/${calificacion}/${idusuario}`, t);
+  }
+
+  getTodosLosTickets(): Observable<any> {
+    return this.http.get<Ticket>(`${this.url}verTodosLosTickets`);
+  }
 }

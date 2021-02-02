@@ -12,29 +12,27 @@
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody *ngFor="let incidencia of incidencias">
 
-                <tr>
+                <tr *ngIf="incidencia.creado != 1">
                     <td>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="idincidencia" name="idincidencia" formControlName="idincidencia" placeholder="ID">
+                            <input type="text" class="form-control" id="idincidencia" name="idincidencia" formControlName="idincidencia" placeholder="ID" value="{{incidencia.idincidencia }}">
                         </div>
+
                     </td>
                     <td>
                         <div class="form-group">
-                            <textarea class="form-control" id="detalle" rows="1" name="detalle" formControlName="detalle" placeholder="Detalle de la incidencia">
+                            <textarea class="form-control" id="detalle" rows="3" name="detalle" formControlName="detalle" placeholder="Detalle de la incidencia" value="{{ incidencia.asunto }}: {{ incidencia.descripcion }}">
 
                         </textarea>
                         </div>
                     </td>
                     <td>
-                        <select id="estado" formControlName="estado">
-                        <option value="0">ASIGNADO</option>
-                        <option value="1">ENCURSO</option>
-                        <option value="2">PENDIENTEEXTERNO</option>
-                        <option value="3">RESUELTO</option>
-                    </select>
+                        <input type="text" class="form-control" id="estado" name="estado" formControlName="estado">
+
                     </td>
+
                     <td>
                         <select id="operario" formControlName="operario">
                         <option *ngFor="let listaUsuario of listaUsuarios" value="{{listaUsuario.idusuario}}">
@@ -46,7 +44,11 @@
                         <button class="btn btn-success" type="submit">
                     Crear Ticket
                 </button>
+                        <button class="btn btn-warning" (click)="borrarInci(incidencia.idincidencia)">
+                    BORRAR
+                </button>
                     </td>
+
                 </tr>
 
             </tbody>
@@ -57,41 +59,7 @@
     <br/>
     <hr>
     <br/>
-    <h3>Incidencias</h3>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">ID Incidencia</th>
-                <th scope="col">Asunto</th>
-                <th scope="col">Descripción</th>
-                <th scope="col">Opciones</th>
-            </tr>
-        </thead>
 
-        <tbody>
-
-            <tr *ngFor="let incidencia of incidencias">
-                <td>
-                    {{ incidencia.idincidencia }}
-                </td>
-                <td>
-                    {{ incidencia.asunto }}
-                </td>
-                <td>
-                    {{ incidencia.descripcion }}
-                </td>
-                <td>
-                    <button class="btn btn-warning" (click)="borrarInci(incidencia.idincidencia)">
-                    BORRAR
-                </button>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <br/>
-    <hr>
-    <br/>
 
 
 </div>

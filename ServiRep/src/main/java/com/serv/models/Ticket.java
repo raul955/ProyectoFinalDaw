@@ -123,4 +123,62 @@ public class Ticket {
 				+ ", comentarious=" + comentarious + ", es=" + es + ", us=" + us + ", inc=" + inc + "]";
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((comentarioemp == null) ? 0 : comentarioemp.hashCode());
+		result = prime * result + ((comentarious == null) ? 0 : comentarious.hashCode());
+		result = prime * result + ((detalle == null) ? 0 : detalle.hashCode());
+		result = prime * result + ((es == null) ? 0 : es.hashCode());
+		result = prime * result + ((idticket == null) ? 0 : idticket.hashCode());
+		result = prime * result + ((inc == null) ? 0 : inc.hashCode());
+		result = prime * result + ((us == null) ? 0 : us.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ticket other = (Ticket) obj;
+		if (comentarioemp == null) {
+			if (other.comentarioemp != null)
+				return false;
+		} else if (!comentarioemp.equals(other.comentarioemp))
+			return false;
+		if (comentarious == null) {
+			if (other.comentarious != null)
+				return false;
+		} else if (!comentarious.equals(other.comentarious))
+			return false;
+		if (detalle == null) {
+			if (other.detalle != null)
+				return false;
+		} else if (!detalle.equals(other.detalle))
+			return false;
+		if (es != other.es)
+			return false;
+		if (idticket == null) {
+			if (other.idticket != null)
+				return false;
+		} else if (!idticket.equals(other.idticket))
+			return false;
+		if (inc == null) {
+			if (other.inc != null)
+				return false;
+		} else if (!inc.equals(other.inc))
+			return false;
+		if (us == null) {
+			if (other.us != null)
+				return false;
+		} else if (!us.equals(other.us))
+			return false;
+		return true;
+	}
+
 }

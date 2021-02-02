@@ -19,7 +19,7 @@ export class CrearticketComponent implements OnInit {
   ticketform = new FormGroup({
     idincidencia: new FormControl('', [Validators.required]),
     detalle: new FormControl('', [Validators.required]),
-    estado: new FormControl('', [Validators.required]),
+    estado: new FormControl('ASIGNADO', [Validators.required]),
     operario: new FormControl('', [Validators.required])
   });
 
@@ -79,7 +79,10 @@ export class CrearticketComponent implements OnInit {
   }
 
   subirTicket(formulario){
+console.log(formulario);
 
+console.log(document.getElementById('idincidencia'));
+document.getElementById('idincidencia').innerText;
   this.t.detalle = formulario.value.detalle;
   this.t.estado = formulario.value.estado;
 console.log(this.t.estado);
@@ -89,7 +92,7 @@ console.log(this.t.estado);
       Swal.fire({
         icon: 'success',
         title: 'Ticket Creado',
-      })
+      })     
     }
   },error=>{
     Swal.fire({
@@ -99,5 +102,9 @@ console.log(this.t.estado);
     })
   });
   }  
+
+  get idincidencia() {
+    return this.ticketform.get('idincidencia');
+  }
 }
 

@@ -90,4 +90,53 @@ public class Tema {
 				+ ", us=" + us + "]";
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((asunto == null) ? 0 : asunto.hashCode());
+		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + ((estado == null) ? 0 : estado.hashCode());
+		result = prime * result + ((idtema == null) ? 0 : idtema.hashCode());
+		result = prime * result + ((us == null) ? 0 : us.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Tema other = (Tema) obj;
+		if (asunto == null) {
+			if (other.asunto != null)
+				return false;
+		} else if (!asunto.equals(other.asunto))
+			return false;
+		if (descripcion == null) {
+			if (other.descripcion != null)
+				return false;
+		} else if (!descripcion.equals(other.descripcion))
+			return false;
+		if (estado == null) {
+			if (other.estado != null)
+				return false;
+		} else if (!estado.equals(other.estado))
+			return false;
+		if (idtema == null) {
+			if (other.idtema != null)
+				return false;
+		} else if (!idtema.equals(other.idtema))
+			return false;
+		if (us == null) {
+			if (other.us != null)
+				return false;
+		} else if (!us.equals(other.us))
+			return false;
+		return true;
+	}
+
 }
