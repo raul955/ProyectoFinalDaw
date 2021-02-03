@@ -1,2 +1,44 @@
-<br/><br/>
-<h3>Consultar tareas de operario</h3>
+<h2>Mis tareas</h2>
+<form class="form">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Detalle</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Comentario</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor="let listaTicket of listaTickets">
+                <td id="idticket" value="listaTicket.idticket" *ngIf="listaTicket.us[0].idusuario == idusuariologeado">
+                    {{listaTicket.idticket}}
+                </td>
+                <td id="detalle" value="listaTicket.detalle" *ngIf="listaTicket.us[0].idusuario == idusuariologeado">
+                    {{listaTicket.detalle}}
+                </td>
+
+                <td id="estado" *ngIf="listaTicket.us[0].idusuario == idusuariologeado">
+                    <select> 
+                            <option value="1" selected>ASIGNADO</option>
+                            <option value="2">ENCURSO</option>
+                            <option value="3">PENDIENTEEXTERNO</option>
+                            <option value="4">RESUELTO</option>
+                        </select>
+                </td>
+                <td id="comentario" *ngIf="listaTicket.us[0].idusuario == idusuariologeado">
+                    <input type="text" class="form-control" id="comentario" name="comentario" placeholder="Inserta un comentario">
+                </td>
+
+                <td>
+                    <button class="btn btn-success" type="submit" *ngIf="listaTicket.us[0].idusuario == idusuariologeado">
+                    Salvar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

@@ -28,4 +28,10 @@ export class TicketService {
   getTodosLosTickets(): Observable<any> {
     return this.http.get<Ticket>(`${this.url}verTodosLosTickets`);
   }
+
+  //deprecado no implementado
+  getTicketOperario(): Observable<any> {
+    return this.http.get<Ticket>(`${this.url}verTicketOperario`);
+  }
+
 }

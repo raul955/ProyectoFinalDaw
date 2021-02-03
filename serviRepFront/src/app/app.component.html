@@ -41,7 +41,7 @@
                     </li>
                 </div>
                 <div>
-                    <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == gestor)">
+                    <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == operario)">
                         <!--Gestor todas las tareas-->
                         <a class="nav-link" routerLink="visualizartodo">Visualizar Tareas</a>
                     </li>
@@ -53,7 +53,7 @@
                     </li>
                 </div>
                 <div>
-                    <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == operario)">
+                    <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == gestor)">
                         <!--Operario ver tareas modifica estado-->
                         <a class="nav-link" routerLink="consultartareas">Consultar Tickets</a>
                     </li>
