@@ -1,5 +1,6 @@
 package com.serv.models;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,24 +26,32 @@ public class Tema {
 	
 	@Column(name = "descripcion")
 	private String descripcion;
-		
-	@Column(name = "estado")
-	private Boolean estado;
 	
-	@OneToMany(targetEntity = Usuario.class)
+	@ManyToMany(targetEntity = Usuario.class)
 	private Set<Usuario> us;
-
+	
+	@Column(name = "fechaCreacion")
+	private LocalDate fechaCreacion;
+	
 	public Tema() {
 		super();
 	}
+	
+	public Tema(String asunto, String descripcion, Set<Usuario> us, LocalDate fechaCreacion) {
+		super();
+		this.asunto = asunto;
+		this.descripcion = descripcion;
+		this.us = us;
+		this.fechaCreacion = fechaCreacion;
+	}
 
-	public Tema(Integer idtema, String asunto, String descripcion, Boolean estado, Set<Usuario> us) {
+	public Tema(Integer idtema, String asunto, String descripcion, Set<Usuario> us, LocalDate fechaCreacion) {
 		super();
 		this.idtema = idtema;
 		this.asunto = asunto;
 		this.descripcion = descripcion;
-		this.estado = estado;
 		this.us = us;
+		this.fechaCreacion = fechaCreacion;
 	}
 
 	public Integer getIdtema() {
@@ -68,14 +78,6 @@ public class Tema {
 		this.descripcion = descripcion;
 	}
 
-	public Boolean getEstado() {
-		return estado;
-	}
-
-	public void setEstado(Boolean estado) {
-		this.estado = estado;
-	}
-
 	public Set<Usuario> getUs() {
 		return us;
 	}
@@ -84,10 +86,12 @@ public class Tema {
 		this.us = us;
 	}
 
-	@Override
-	public String toString() {
-		return "Tema [idtema=" + idtema + ", asunto=" + asunto + ", descripcion=" + descripcion + ", estado=" + estado
-				+ ", us=" + us + "]";
+	public LocalDate getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(LocalDate fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
 	}
 
 	@Override
@@ -96,7 +100,7 @@ public class Tema {
 		int result = 1;
 		result = prime * result + ((asunto == null) ? 0 : asunto.hashCode());
 		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
-		result = prime * result + ((estado == null) ? 0 : estado.hashCode());
+		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
 		result = prime * result + ((idtema == null) ? 0 : idtema.hashCode());
 		result = prime * result + ((us == null) ? 0 : us.hashCode());
 		return result;
@@ -121,10 +125,10 @@ public class Tema {
 				return false;
 		} else if (!descripcion.equals(other.descripcion))
 			return false;
-		if (estado == null) {
-			if (other.estado != null)
+		if (fechaCreacion == null) {
+			if (other.fechaCreacion != null)
 				return false;
-		} else if (!estado.equals(other.estado))
+		} else if (!fechaCreacion.equals(other.fechaCreacion))
 			return false;
 		if (idtema == null) {
 			if (other.idtema != null)
@@ -137,6 +141,12 @@ public class Tema {
 		} else if (!us.equals(other.us))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Tema [idtema=" + idtema + ", asunto=" + asunto + ", descripcion=" + descripcion + ", us=" + us
+				+ ", fechaCreacion=" + fechaCreacion + "]";
 	}
 
 }

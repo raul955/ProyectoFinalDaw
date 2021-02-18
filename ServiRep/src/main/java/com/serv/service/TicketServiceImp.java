@@ -1,5 +1,7 @@
 package com.serv.service;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -7,11 +9,10 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.serv.models.Calificaciones;
+import com.serv.models.Estado;
 import com.serv.models.Incidencia;
 import com.serv.models.Ticket;
 import com.serv.models.Usuario;
-import com.serv.repository.CalificacionesRepository;
 import com.serv.repository.IncidenciaRepository;
 import com.serv.repository.TicketRepository;
 import com.serv.repository.UsuarioRepository;
@@ -28,58 +29,105 @@ public class TicketServiceImp implements TicketService{
 	@Autowired
 	TicketRepository ticketrep;
 	
-	@Autowired
-	CalificacionesRepository calificacionrep;
 	
+	/*Gestion tickets asigna operario y estado*/
 	@Override
-	public void crearTicket(Ticket ticket, int idincidencia, int idusuario) {
+	public void gestionTicket(Ticket ticket, int idticket, int idusuario) {
 		
 		Set <Usuario> us = new HashSet<>();	
-		Set <Incidencia> in = new HashSet<>();	
 		
-		Usuario user = usuariorep.getOne(idusuario);
-		Incidencia inc = incidenciarep.getOne(idincidencia);
+		Usuario u = usuariorep.getOne(idusuario);
+		Ticket tick = ticketrep.getOne(idticket);
 		
-		us.add(user);
-		in.add(inc);
+		us.add(u);
 		
-		inc.setCreado(true);
-		incidenciarep.save(inc);
+		tick.setEs(ticket.getEs());
 		
-		Ticket ticketero = new Ticket(ticket.getDetalle(),ticket.getEs(),us,in);
-		ticketrep.save(ticketero);
+		Estado e = ticket.getEs();
+		if(e == Estado.RESUELTO) {
+			LocalDate date = LocalDate.now();
+			tick.setFechaFinalizacion(date);
+		}
+		
+		tick.setUsuarioEmpleado(us);
+
+		ticketrep.save(tick);
 		
 	}
 
+	/*Carga los tickets desde la vista del cliente*/
 	@Override
-	public List<Ticket> getTicket(int idusuario) {
-		
+	public List<Ticket> getTicket(int idusuario) {		
 		return ticketrep.getTicket(idusuario);
 	}
 
+	/*Añade comentario del empleado y estado a los tickets desde la vista del empleado*/
 	@Override
-	public void añadirComentarioCalificacionTicket(int idticket, String comentario, int calificacion, int idusuario) {
+	public void agregarcomentarioyestado(Ticket ticket, int idticket, String comentario) {
 		
-		Set <Usuario> us = new HashSet<>();	
-		Usuario user = usuariorep.getOne(idusuario);
-		us.add(user);
+		Ticket t = ticketrep.getOne(idticket);		
+		t.setComentarioemp(comentario);
+		t.setEs(ticket.getEs());
+		Estado e = t.getEs();
 		
-		Ticket t = ticketrep.getOne(idticket);
+		if(e == Estado.RESUELTO) {
+			LocalDate date = LocalDate.now();
+			t.setFechaFinalizacion(date);
+		}
 		
+		ticketrep.save(t);		
+	}
+	
+	
+	/*Añade comentario y calificacion a los tickets desde la vista del usuario*/
+	@Override
+	public void añadirComentarioCalificacionTicket(int idticket, String comentario, int calificacion) {
+		
+		Ticket t = ticketrep.getOne(idticket);		
 		t.setComentarious(comentario);
-		ticketrep.save(t);
-		
-		Calificaciones c = new Calificaciones();
-		c.setCalificacion(calificacion);
-		c.setUsuario(us);
-		calificacionrep.save(c);
-		
+		t.setPuntuacion(calificacion);
+		ticketrep.save(t);		
+	}
+
+	/*Devuelve todos los tickets de la bbdd*/
+	@Override
+	public List<Ticket> getTodosLosTicket() {		
+		return ticketrep.getTodosLosTicket();
 	}
 
 	@Override
-	public List<Ticket> getTodosLosTicket() {
+	public void crearTicket(Ticket ticket, int idincidencia, int idoperario) {
+	}
+
+	/*El usuario crea la incidencia*/
+	@Override
+	public void crearTicketUsuario(Ticket ticket, int idusuario) {
 		
-		return ticketrep.getTodosLosTicket();
+		LocalDate date = LocalDate.now();
+
+		Set <Usuario> us = new HashSet<>();		
+		
+		Usuario usss = usuariorep.getOne(idusuario);
+		
+		us.add(usss);
+		
+		String informacion = ticket.getAsunto() +": " + ticket.getDescripcion(); 
+		Ticket tick = new Ticket(ticket.getAsunto(),ticket.getDescripcion(),ticket.getEs(),us, date, informacion);
+		
+		ticketrep.save(tick);		
+	}
+
+	/*Carga los tickets desde la vista del operario*/
+	@Override
+	public List<Ticket> getTicketOperario(int idusuario) {
+		return ticketrep.getTicketOperario(idusuario);
+	}
+
+	/*Borra el ticket vista de administrador*/
+	@Override
+	public void borrarTickets(int idticket) {
+		Ticket t = ticketrep.getOne(idticket);		
+		ticketrep.delete(t);		
 	}
 
 }

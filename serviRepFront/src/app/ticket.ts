@@ -1,9 +1,14 @@
 export class Ticket {
     idticket: number;
-    detalle: string;
+    asunto: string;
+    descripcion: string;
+    informacion: string;
     comentarioemp: string;
     comentarious: string;
-    estado: number;
-    us: any;
-    incidencia: any; 
+    es: number;
+    ususarioCreador: any;
+    usuarioEmpleado: any;
+    fechaCreacion: Date;
+    fechaFinalizacion: Date;
+    puntuacion: number;
 }

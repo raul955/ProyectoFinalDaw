@@ -13,4 +13,8 @@ public interface UsuarioService {
 	
 	List <Usuario> getUsuarios();
 	
+	void borrarUsuario(Integer idusuario);
+	
+	void modificaUsuario(Usuario usuario);
+	
 }

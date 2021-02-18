@@ -1,1 +1,49 @@
-<p>admin works!</p>
+<h3>Gestión de usuarios</h3>
+<form [formGroup]="userForm" class="form">
+    <table class="table" *ngIf="listausuarios != null">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nick</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Roll</th>
+                <th scope="col">Cambiar Roll</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor="let listausuario of listausuarios">
+                <td>
+                    {{listausuario.idusuario}}
+                </td>
+                <td>
+                    {{listausuario.nick}}
+                </td>
+                <td>
+                    {{listausuario.correo}}
+                </td>
+                <td>
+                    {{listausuario.roll}}
+                </td>
+                <td id="roll">
+                    <select formControlName="roll"> 
+                    <option value="0">GESTOR</option>
+                    <option value="1">OPERARIO</option>
+                    <option value="2">USUARIO</option>
+                    <option value="3">ADMIN</option>
+                </select>
+                </td>
+                <td>
+                    <button class="btn btn-success" (click)="salvarDatosUsuario(listausuario.idusuario, userForm)">
+                        Salvar
+                        </button>
+                    <button class="btn btn-danger" (click)="borrarUsuario(listausuario.idusuario)">
+                    Borrar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

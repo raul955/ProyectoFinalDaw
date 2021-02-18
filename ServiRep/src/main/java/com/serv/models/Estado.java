@@ -8,6 +8,8 @@ public enum Estado {
 	
 	PENDIENTEEXTERNO,
 	
-	RESUELTO
+	RESUELTO,
+	
+	PENDIENTECONFIRMACION
 	
 }

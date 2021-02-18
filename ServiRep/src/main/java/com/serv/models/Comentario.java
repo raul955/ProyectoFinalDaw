@@ -1,5 +1,6 @@
 package com.serv.models;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,22 +24,27 @@ public class Comentario {
 	@Column(name = "descripcion")
 	private String descripcion;
 
-	@OneToMany(targetEntity = Usuario.class)
+	@ManyToMany(targetEntity = Usuario.class)
 	private Set<Usuario> us;
 	
-	@OneToMany(targetEntity = Tema.class)
+	@ManyToMany(targetEntity = Tema.class)
 	private Set<Tema> tema;
+	
+	@Column(name = "fechaCreacion")
+	private LocalDate fechaCreacion;
 
 	public Comentario() {
 		super();
 	}
 
-	public Comentario(Integer idcomentario, String descripcion, Set<Usuario> us, Set<Tema> tema) {
+	public Comentario(Integer idcomentario, String descripcion, Set<Usuario> us, Set<Tema> tema,
+			LocalDate fechaCreacion) {
 		super();
 		this.idcomentario = idcomentario;
 		this.descripcion = descripcion;
 		this.us = us;
 		this.tema = tema;
+		this.fechaCreacion = fechaCreacion;
 	}
 
 	public Integer getIdcomentario() {
@@ -72,10 +79,12 @@ public class Comentario {
 		this.tema = tema;
 	}
 
-	@Override
-	public String toString() {
-		return "Comentario [idcomentario=" + idcomentario + ", descripcion=" + descripcion + ", us=" + us + ", tema="
-				+ tema + "]";
+	public LocalDate getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(LocalDate fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
 	}
 
 	@Override
@@ -83,6 +92,7 @@ public class Comentario {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
 		result = prime * result + ((idcomentario == null) ? 0 : idcomentario.hashCode());
 		result = prime * result + ((tema == null) ? 0 : tema.hashCode());
 		result = prime * result + ((us == null) ? 0 : us.hashCode());
@@ -103,6 +113,11 @@ public class Comentario {
 				return false;
 		} else if (!descripcion.equals(other.descripcion))
 			return false;
+		if (fechaCreacion == null) {
+			if (other.fechaCreacion != null)
+				return false;
+		} else if (!fechaCreacion.equals(other.fechaCreacion))
+			return false;
 		if (idcomentario == null) {
 			if (other.idcomentario != null)
 				return false;
@@ -121,4 +136,9 @@ public class Comentario {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Comentario [idcomentario=" + idcomentario + ", descripcion=" + descripcion + ", us=" + us + ", tema="
+				+ tema + ", fechaCreacion=" + fechaCreacion + "]";
+	}
 }

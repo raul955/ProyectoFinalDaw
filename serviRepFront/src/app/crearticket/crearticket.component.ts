@@ -79,14 +79,14 @@ export class CrearticketComponent implements OnInit {
   }
 
   subirTicket(formulario){
-console.log(formulario);
+    console.log(formulario);
 
-console.log(document.getElementById('idincidencia'));
-document.getElementById('idincidencia').innerText;
-  this.t.detalle = formulario.value.detalle;
-  this.t.estado = formulario.value.estado;
-console.log(this.t.estado);
-  this.tick.crearTicket(this.t, formulario.value.idincidencia, formulario.value.operario).subscribe(data =>{
+    console.log(document.getElementById('idincidencia'));
+    document.getElementById('idincidencia').innerText;
+    this.t.informacion = formulario.value.informacion;
+    this.t.es = formulario.value.estado;
+    console.log(this.t.es);
+    this.tick.crearTicket(this.t, formulario.value.idincidencia, formulario.value.operario).subscribe(data =>{
     console.log('ERRRRR' + data); 
     if(data == null){
       Swal.fire({
@@ -94,14 +94,14 @@ console.log(this.t.estado);
         title: 'Ticket Creado',
       })     
     }
-  },error=>{
+    },error=>{
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
       text: 'Algo salió mal.',
     })
-  });
-  }  
+    });
+    }  
 
   get idincidencia() {
     return this.ticketform.get('idincidencia');

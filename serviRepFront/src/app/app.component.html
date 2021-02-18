@@ -48,14 +48,8 @@
                 </div>
                 <div>
                     <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == gestor)">
-                        <!--Gestor crear tarea asignar a empleado-->
-                        <a class="nav-link" routerLink="crearticket">Crear Ticket</a>
-                    </li>
-                </div>
-                <div>
-                    <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == gestor)">
                         <!--Operario ver tareas modifica estado-->
-                        <a class="nav-link" routerLink="consultartareas">Consultar Tickets</a>
+                        <a class="nav-link" routerLink="consultartareas">Gestionar Tickets</a>
                     </li>
                 </div>
                 <div>
@@ -85,17 +79,17 @@
         <div class="container">
             <ul class="list-unstyled list-inline text-center">
                 <li class="list-inline-item">
-                    <a class="btn-floating btn-fb mx-1" href="https://www.facebook.com">
+                    <a class="btn-floating btn-fb mx-1" target="_blank" href="https://www.facebook.com">
                         <i class="fab fa-facebook"></i>
                     </a>
                 </li>
                 <li class="list-inline-item">
-                    <a class="btn-floating btn-tw mx-1" href="https://www.twitter.com">
+                    <a class="btn-floating btn-tw mx-1" target="_blank" href="https://www.twitter.com">
                         <i class="fab fa-twitter"> </i>
                     </a>
                 </li>
                 <li class="list-inline-item">
-                    <a class="btn-floating btn-gplus mx-1" href="https://www.instagram.com">
+                    <a class="btn-floating btn-gplus mx-1" target="_blank" href="https://www.instagram.com">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </li>

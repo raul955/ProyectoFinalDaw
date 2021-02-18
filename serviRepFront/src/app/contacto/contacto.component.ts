@@ -6,6 +6,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { IncidenciaService } from '../incidencia.service';
+import { Ticket } from '../ticket';
+import { TicketService } from '../ticket.service';
 
 @Component({
   selector: 'app-contacto',
@@ -15,28 +17,28 @@ import { IncidenciaService } from '../incidencia.service';
 export class ContactoComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
-  contacto: Contacto = new Contacto();
+  ticket: Ticket = new Ticket();
 
   contactoform = new FormGroup({
     asunto: new FormControl('', [Validators.required, Validators.minLength(5)]),
     descripcion: new FormControl('', [Validators.required, Validators.minLength(15)])  
   });
 
-  constructor(private us: UsuarioServiceService, private router: Router, private inc: IncidenciaService) { }
+  constructor(private us: UsuarioServiceService, private router: Router, private tick: TicketService) { }
 
   ngOnInit() {
   }
 
   creaticket(formulario){
-    this.contacto.asunto = formulario.value.asunto;
-    this.contacto.descripcion = formulario.value.descripcion;
-    this.contacto.usuario = JSON.parse(sessionStorage.getItem("user"));
-    this.contacto.activo = false;
+    this.ticket.asunto = formulario.value.asunto;
+    this.ticket.descripcion = formulario.value.descripcion;
+    this.ticket.ususarioCreador = JSON.parse(sessionStorage.getItem("user"));
+    this.ticket.es = 4;
 
-    console.log(this.contacto);
-    console.log(typeof(this.contacto.usuario.idusuario));
+    console.log(this.ticket);
+    console.log(typeof(this.ticket.ususarioCreador.idusuario));
 
-    this.inc.crearIncidencia(this.contacto, this.contacto.usuario.idusuario).subscribe(data =>{
+    this.tick.crearIncidencia(this.ticket, this.ticket.ususarioCreador.idusuario).subscribe(data =>{
       console.log(data); 
       if(data == null){
         Swal.fire({

@@ -1,12 +1,15 @@
-<h2>Todos los tickets</h2>
+<h2>Gestión de incidencias</h2>
 <form [formGroup]="todoform" class="form">
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Detalle</th>
-                <th scope="col">Operario</th>
-                <th scope="col">Estado</th>
+                <th scope="col">Asignar Operario</th>
+                <th scope="col">Estado Actual</th>
+                <th scope="col">Cambiar Estado</th>
+                <th scope="col">Fecha Solicitud</th>
+                <th scope="col">Fecha Finalización</th>
                 <th scope="col">Opciones</th>
             </tr>
         </thead>
@@ -17,8 +20,8 @@
                 <td id="idticket" value="listaTicket.idticket">
                     {{listaTicket.idticket}}
                 </td>
-                <td id="detalle" value="listaTicket.detalle">
-                    {{listaTicket.detalle}}
+                <td id="detalle" value="listaTicket.informacion">
+                    {{listaTicket.informacion}}
                 </td>
                 <td>
                     <select id="operario" formControlName="operario">
@@ -27,21 +30,34 @@
                         </option>                                          
                     </select>
                 </td>
+                <td id="esss" value="listaTicket.es">
+                    {{listaTicket.es}}
+                </td>
                 <td id="estado">
                     <select required formControlName="estado"> 
-                        <option value="1" selected>ASIGNADO</option>
-                        <option value="2">ENCURSO</option>
-                        <option value="3">PENDIENTEEXTERNO</option>
-                        <option value="4">RESUELTO</option>
-
+                        <option value="0" selected>ASIGNADO</option>
+                        <option value="1">ENCURSO</option>
+                        <option value="2">PENDIENTEEXTERNO</option>
+                        <option value="3">RESUELTO</option>
+                        <option value="4">PENDIENTECONFIRMACION</option>
                         </select>
+                </td>
+                <td id="detalle" value="listaTicket.fechaCreacion">
+                    {{listaTicket.fechaCreacion}}
+                </td>
+                <td id="detalle" value="listaTicket.fechaFinalizacion">
+                    {{listaTicket.fechaFinalizacion}}
                 </td>
 
                 <td>
-                    <button class="btn btn-success" type="submit">
+                    <button class="btn btn-success" (click)="subirTicket(listaTicket.idticket, todoform)">
                     Salvar
                     </button>
+                    <button class="btn btn-danger" (click)="borrarTicket(listaTicket.idticket)">
+                        Borrar
+                    </button>
                 </td>
+
             </tr>
         </tbody>
     </table>

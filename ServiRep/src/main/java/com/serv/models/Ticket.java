@@ -1,5 +1,6 @@
 package com.serv.models;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -19,8 +20,14 @@ public class Ticket {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idticket;
 
-	@Column(name = "detalle")
-	private String detalle;
+	@Column(name = "asunto")
+	private String asunto;
+
+	@Column(name = "descripcion")
+	private String descripcion;
+	
+	@Column(name = "informacion")
+	private String informacion;
 
 	@Column(name = "comentarioemp")
 	private String comentarioemp;
@@ -32,33 +39,52 @@ public class Ticket {
 	private Estado es;
 
 	@ManyToMany(targetEntity = Usuario.class)
-	private Set<Usuario> us;
+	private Set<Usuario> usuarioCreador;
+	
+	@ManyToMany(targetEntity = Usuario.class)
+	private Set<Usuario> usuarioEmpleado;
 
-	@ManyToMany(targetEntity = Incidencia.class)
-	private Set<Incidencia> inc;
-
+	@Column(name = "fechaCreacion")
+	private LocalDate fechaCreacion;
+	
+	@Column(name = "fechaFinalizacion")
+	private LocalDate fechaFinalizacion;
+	
+	@Column(name = "puntuacion")
+	private int puntuacion;
+	
 	public Ticket() {
 		super();
 	}
 
-	public Ticket(Integer idticket, String detalle, String comentarioemp, String comentarious, Estado es,
-			Set<Usuario> us, Set<Incidencia> inc) {
+	
+	
+	public Ticket(String asunto, String descripcion, Estado es, Set<Usuario> usuarioCreador, LocalDate fechaCreacion, String informacion) {
+		super();
+		this.asunto = asunto;
+		this.descripcion = descripcion;
+		this.es = es;
+		this.usuarioCreador = usuarioCreador;
+		this.fechaCreacion = fechaCreacion;
+		this.informacion = informacion;
+	}
+
+	public Ticket(Integer idticket, String asunto, String descripcion, String informacion, String comentarioemp,
+			String comentarious, Estado es, Set<Usuario> usuarioCreador, Set<Usuario> usuarioEmpleado,
+			LocalDate fechaCreacion, LocalDate fechaFinalizacion, int puntuacion) {
 		super();
 		this.idticket = idticket;
-		this.detalle = detalle;
+		this.asunto = asunto;
+		this.descripcion = descripcion;
+		this.informacion = informacion;
 		this.comentarioemp = comentarioemp;
 		this.comentarious = comentarious;
 		this.es = es;
-		this.us = us;
-		this.inc = inc;
-	}
-	
-	public Ticket(String detalle,Estado es, Set<Usuario> us, Set<Incidencia> inc) {
-
-		this.detalle = detalle;
-		this.es = es;
-		this.us = us;
-		this.inc = inc;
+		this.usuarioCreador = usuarioCreador;
+		this.usuarioEmpleado = usuarioEmpleado;
+		this.fechaCreacion = fechaCreacion;
+		this.fechaFinalizacion = fechaFinalizacion;
+		this.puntuacion = puntuacion;
 	}
 
 	public Integer getIdticket() {
@@ -69,12 +95,28 @@ public class Ticket {
 		this.idticket = idticket;
 	}
 
-	public String getDetalle() {
-		return detalle;
+	public String getAsunto() {
+		return asunto;
 	}
 
-	public void setDetalle(String detalle) {
-		this.detalle = detalle;
+	public void setAsunto(String asunto) {
+		this.asunto = asunto;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getInformacion() {
+		return informacion;
+	}
+
+	public void setInformacion(String informacion) {
+		this.informacion = informacion;
 	}
 
 	public String getComentarioemp() {
@@ -101,39 +143,62 @@ public class Ticket {
 		this.es = es;
 	}
 
-	public Set<Usuario> getUs() {
-		return us;
+	public Set<Usuario> getUsuarioCreador() {
+		return usuarioCreador;
 	}
 
-	public void setUs(Set<Usuario> us) {
-		this.us = us;
+	public void setUsuarioCreador(Set<Usuario> usuarioCreador) {
+		this.usuarioCreador = usuarioCreador;
 	}
 
-	public Set<Incidencia> getInc() {
-		return inc;
+	public Set<Usuario> getUsuarioEmpleado() {
+		return usuarioEmpleado;
 	}
 
-	public void setInc(Set<Incidencia> inc) {
-		this.inc = inc;
+	public void setUsuarioEmpleado(Set<Usuario> usuarioEmpleado) {
+		this.usuarioEmpleado = usuarioEmpleado;
 	}
 
-	@Override
-	public String toString() {
-		return "Ticket [idticket=" + idticket + ", detalle=" + detalle + ", comentarioemp=" + comentarioemp
-				+ ", comentarious=" + comentarious + ", es=" + es + ", us=" + us + ", inc=" + inc + "]";
+	public LocalDate getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(LocalDate fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	public LocalDate getFechaFinalizacion() {
+		return fechaFinalizacion;
+	}
+
+	public void setFechaFinalizacion(LocalDate fechaFinalizacion) {
+		this.fechaFinalizacion = fechaFinalizacion;
+	}
+
+	public int getPuntuacion() {
+		return puntuacion;
+	}
+
+	public void setPuntuacion(int puntuacion) {
+		this.puntuacion = puntuacion;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((asunto == null) ? 0 : asunto.hashCode());
 		result = prime * result + ((comentarioemp == null) ? 0 : comentarioemp.hashCode());
 		result = prime * result + ((comentarious == null) ? 0 : comentarious.hashCode());
-		result = prime * result + ((detalle == null) ? 0 : detalle.hashCode());
+		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
 		result = prime * result + ((es == null) ? 0 : es.hashCode());
+		result = prime * result + ((fechaCreacion == null) ? 0 : fechaCreacion.hashCode());
+		result = prime * result + ((fechaFinalizacion == null) ? 0 : fechaFinalizacion.hashCode());
 		result = prime * result + ((idticket == null) ? 0 : idticket.hashCode());
-		result = prime * result + ((inc == null) ? 0 : inc.hashCode());
-		result = prime * result + ((us == null) ? 0 : us.hashCode());
+		result = prime * result + ((informacion == null) ? 0 : informacion.hashCode());
+		result = prime * result + puntuacion;
+		result = prime * result + ((usuarioCreador == null) ? 0 : usuarioCreador.hashCode());
+		result = prime * result + ((usuarioEmpleado == null) ? 0 : usuarioEmpleado.hashCode());
 		return result;
 	}
 
@@ -146,6 +211,11 @@ public class Ticket {
 		if (getClass() != obj.getClass())
 			return false;
 		Ticket other = (Ticket) obj;
+		if (asunto == null) {
+			if (other.asunto != null)
+				return false;
+		} else if (!asunto.equals(other.asunto))
+			return false;
 		if (comentarioemp == null) {
 			if (other.comentarioemp != null)
 				return false;
@@ -156,29 +226,56 @@ public class Ticket {
 				return false;
 		} else if (!comentarious.equals(other.comentarious))
 			return false;
-		if (detalle == null) {
-			if (other.detalle != null)
+		if (descripcion == null) {
+			if (other.descripcion != null)
 				return false;
-		} else if (!detalle.equals(other.detalle))
+		} else if (!descripcion.equals(other.descripcion))
 			return false;
 		if (es != other.es)
+			return false;
+		if (fechaCreacion == null) {
+			if (other.fechaCreacion != null)
+				return false;
+		} else if (!fechaCreacion.equals(other.fechaCreacion))
+			return false;
+		if (fechaFinalizacion == null) {
+			if (other.fechaFinalizacion != null)
+				return false;
+		} else if (!fechaFinalizacion.equals(other.fechaFinalizacion))
 			return false;
 		if (idticket == null) {
 			if (other.idticket != null)
 				return false;
 		} else if (!idticket.equals(other.idticket))
 			return false;
-		if (inc == null) {
-			if (other.inc != null)
+		if (informacion == null) {
+			if (other.informacion != null)
 				return false;
-		} else if (!inc.equals(other.inc))
+		} else if (!informacion.equals(other.informacion))
 			return false;
-		if (us == null) {
-			if (other.us != null)
+		if (puntuacion != other.puntuacion)
+			return false;
+		if (usuarioCreador == null) {
+			if (other.usuarioCreador != null)
 				return false;
-		} else if (!us.equals(other.us))
+		} else if (!usuarioCreador.equals(other.usuarioCreador))
+			return false;
+		if (usuarioEmpleado == null) {
+			if (other.usuarioEmpleado != null)
+				return false;
+		} else if (!usuarioEmpleado.equals(other.usuarioEmpleado))
 			return false;
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Ticket [idticket=" + idticket + ", asunto=" + asunto + ", descripcion=" + descripcion + ", informacion="
+				+ informacion + ", comentarioemp=" + comentarioemp + ", comentarious=" + comentarious + ", es=" + es
+				+ ", usuarioCreador=" + usuarioCreador + ", usuarioEmpleado=" + usuarioEmpleado + ", fechaCreacion="
+				+ fechaCreacion + ", fechaFinalizacion=" + fechaFinalizacion + ", puntuacion=" + puntuacion + "]";
+	}
+
+	
+	
 }

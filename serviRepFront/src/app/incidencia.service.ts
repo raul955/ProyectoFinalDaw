@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Contacto } from './contacto';
 import { Observable } from 'rxjs';
+import { Ticket } from './ticket';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class IncidenciaService {
 
   constructor(private http: HttpClient) { }
 
-  crearIncidencia(contacto: Contacto, id: number): Observable<any> {
-    return this.http.post(`${this.url}crearIncidencia/${id}`, contacto);
+  crearIncidencia(ticket: Ticket, id: number): Observable<any> {
+    return this.http.post(`${this.url}crearIncidencia/${id}`, ticket);
   }
 
   getIncidencias(): Observable<any> {

@@ -2,15 +2,15 @@
 <br/>
 <h3>Mis Incidencias</h3>
 
-<form [formGroup]="salvarForm" class="form" (ngSubmit)="salvarComentario(salvarForm)">
+<form [formGroup]="salvarForm" class="form">
     <table class="table" *ngIf="listaTickets != null">
         <thead>
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Detalle</th>
+                <th scope="col">Informacion</th>
                 <th scope="col">Estado</th>
-                <th scope="col">Operario</th>
-                <th scope="col" style="display:none;">Operario</th>
+                <th scope="col">Fecha Solicitud</th>
+                <!--<th scope="col">Operario</th>
+                <th scope="col" style="display:none;">Operario</th>-->
                 <th scope="col">Puntuar</th>
                 <th scope="col">Comentario</th>
                 <th scope="col">Opciones</th>
@@ -20,22 +20,25 @@
         <tbody>
 
             <tr *ngFor="let listaTicket of listaTickets">
-                <td id="funcionaporfavor" value="listaTicket.idticket">
+                <td style="display:none;" value="listaTicket.idticket" id="idticket">
                     {{listaTicket.idticket}}
                 </td>
                 <td>
-                    {{listaTicket.detalle}}
+                    {{listaTicket.informacion}}
                 </td>
                 <td>
-                    {{listaTicket.estado}}
-                </td>
-                <td id="idoperario" value="listaTicket.us[0].idusuario" style="display:none;">
-                    {{listaTicket.us[0].idusuario}}
+                    {{listaTicket.es}}
                 </td>
                 <td>
-                    {{listaTicket.us[0].nombre}}
+                    {{listaTicket.fechaCreacion}}
                 </td>
-                <td>
+                <!--<td *ngIf="listaTicket.es != 4" id="idoperario" value="listaTicket.usuarioEmpleado[0].idusuario" style="display:none;">
+                    {{listaTicket.usuarioEmpleado[0].idusuario}}
+                </td>
+                <td *ngIf="listaTicket.es != 4">
+                    {{listaTicket.usuarioEmpleado[0].nombre}}
+                </td>-->
+                <td *ngIf="listaTicket.es != 4">
                     <select required formControlName="calificacion"> 
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -51,7 +54,7 @@
                     </div>
                 </td>
                 <td>
-                    <button class="btn btn-success" type="submit">
+                    <button class="btn btn-success" (click)="salvarComentario(listaTicket.idticket, salvarForm)">
                     Salvar
                     </button>
                 </td>

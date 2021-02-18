@@ -20,13 +20,13 @@ export class MisticketsComponent implements OnInit {
     calificacion: new FormControl('', [Validators.required]),
   });
 
+  PENDIENTECONFIRMACION: string = "PENDIENTECONFIRMACION";
   listaTickets: Ticket[];
   constructor( private inci: IncidenciaService, private us: UsuarioServiceService, private tick: TicketService ) { }
 
   ngOnInit() {
     var temporal;
     temporal = JSON.parse(sessionStorage.getItem('user'));
-    console.log(temporal);
     this.getTicketsUsuario(temporal.idusuario);
 
   }
@@ -40,26 +40,23 @@ export class MisticketsComponent implements OnInit {
     });
   }
 
-  salvarComentario(formulario){
+  salvarComentario(idtickett: number, formulario){
 
-  this.tick.agregarcomentarioycalificacion(this.t, Number.parseInt(document.getElementById('funcionaporfavor').innerText), formulario.value.comentario, formulario.value.calificacion, Number.parseInt(document.getElementById('idoperario').innerText)).subscribe(data =>{
+  this.tick.agregarcomentarioycalificacion(this.t, idtickett, formulario.value.comentario, formulario.value.calificacion).subscribe(data =>{
     console.log(data); 
     if(data == null){
       Swal.fire({
         icon: 'success',
-        title: 'Registrado con éxito',
+        title: 'Salvado con éxito',
       })
     }
   },error=>{
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
-      text: 'Nick o correo ya existente, por favor prueba otro.',
+      text: 'Algo salió mal.',
     })
   });
-    console.log(Number.parseInt(document.getElementById('idoperario').innerText));
-    console.log(formulario.value.comentario);
-    console.log(formulario.value.calificacion);
   }
 
 }
