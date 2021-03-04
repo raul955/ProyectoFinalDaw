@@ -59,10 +59,14 @@ borrarUsuario(idusuario: number):Observable<any> {
   return this.http.delete(`${this.url}borrarUsuario/${idusuario}`);
 }
 
+/**Modifica el roll de usuario */
 modificaUsuario(usuario: Usuario): Observable<any> {
   return this.http.post(`${this.url}modificaUsuario`, usuario);
 }
 
+/**Trae la lista de operarios ordenada para el ranking */
+getRanking(): Observable<any>{
+  return this.http.get<Usuario>(`${this.url}ranking`);
 }
 
-
+}

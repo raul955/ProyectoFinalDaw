@@ -18,6 +18,8 @@ import { AdminComponent } from './admin/admin.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { VisualizartemaComponent } from './visualizartema/visualizartema.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -34,13 +36,15 @@ import { HttpClientModule } from '@angular/common/http';
     ConsultartareasComponent,
     HomeComponent,
     AdminComponent,
+    VisualizartemaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

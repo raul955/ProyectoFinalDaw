@@ -81,9 +81,17 @@ export class VisualizartodoComponent implements OnInit {
       this.usuarioOperadorSeleccionado=data;
       this.usuarioOperadorSeleccionado = this.usuarioOperadorSeleccionado.filter(function(i) { return i.correo == formulario.value.operario }); 
       
+      if(formulario.value.operario == "" || this.t.es == null){
+        Swal.fire({
+          icon: 'error',
+          title: 'Debe especificar operario asignado y el estado de la tarea.'
+        });
+      }
+
       this.tick.gestionTicket(this.t, idtickett, this.usuarioOperadorSeleccionado[0].idusuario).subscribe(data =>{
         this.getTodosLosTickets();
         if(data == null){
+          this.todoform.reset();
           Swal.fire({
             icon: 'success',
             title: 'Ticket Creado',
@@ -94,7 +102,7 @@ export class VisualizartodoComponent implements OnInit {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Algo salió mal.',
+          text: 'Debe especificar operario asignado y el estado de la tarea.',
         })
         });
     },error =>{

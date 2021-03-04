@@ -11,5 +11,7 @@ public interface TemaService {
 	void crearTema(Tema tema, int idusuario);
 	
 	List<Tema> getTemas();
+	
+	Tema getTemaId(int idtema);
 
 }

@@ -1,16 +1,22 @@
 <br/>
 <br/>
-<h3>Mis Incidencias</h3>
+<h3 align="center" *ngIf="listaTickets[0] != null">Mis Incidencias</h3>
+<br/>
+<h3 align="center" *ngIf="listaTickets[0] == null">No tiene ningún ticket a su nombre!</h3>
+<br/>
+<br/>
+<div align="center">
+    <img *ngIf="listaTickets[0] == null" src="https://www.freeiconspng.com/uploads/error-icon-3.png" />
+</div>
 
 <form [formGroup]="salvarForm" class="form">
-    <table class="table" *ngIf="listaTickets != null">
+    <table class="table" *ngIf="listaTickets[0] != null">
         <thead>
             <tr>
                 <th scope="col">Informacion</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Fecha Solicitud</th>
-                <!--<th scope="col">Operario</th>
-                <th scope="col" style="display:none;">Operario</th>-->
+                <th scope="col">Fecha Finalización</th>
                 <th scope="col">Puntuar</th>
                 <th scope="col">Comentario</th>
                 <th scope="col">Opciones</th>
@@ -32,13 +38,10 @@
                 <td>
                     {{listaTicket.fechaCreacion}}
                 </td>
-                <!--<td *ngIf="listaTicket.es != 4" id="idoperario" value="listaTicket.usuarioEmpleado[0].idusuario" style="display:none;">
-                    {{listaTicket.usuarioEmpleado[0].idusuario}}
+                <td>
+                    {{listaTicket.fechaFinalizacion}}
                 </td>
-                <td *ngIf="listaTicket.es != 4">
-                    {{listaTicket.usuarioEmpleado[0].nombre}}
-                </td>-->
-                <td *ngIf="listaTicket.es != 4">
+                <td>
                     <select required formControlName="calificacion"> 
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -62,3 +65,5 @@
         </tbody>
     </table>
 </form>
+
+<div style="height: 23rem;"></div>

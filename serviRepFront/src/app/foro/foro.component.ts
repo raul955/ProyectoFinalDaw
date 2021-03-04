@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Tema } from '../tema';
 import { TemaService } from '../tema.service';
@@ -27,12 +27,16 @@ export class ForoComponent implements OnInit {
   }
 
 
+  pasoid(){
+
+  }
+
   getTemas(){
 
     this.tem.getTemas().subscribe(data => {
       this.listatemas = data;
       console.log(data);
-      console.log(this.listatemas[0].us[0].nick);
+      console.log(this.listatemas[0].us.nick);
     });
   }
 
@@ -45,12 +49,17 @@ export class ForoComponent implements OnInit {
     console.log(idusuario);
 
     this.tem.crearTema(this.tema, idusuario).subscribe(data =>{
-      console.log(data); 
+      console.log(data);
+      this.getTemas(); 
+      this.temaForm.reset;
+      this.router.navigate(['/foro']);
       if(data == null){
         Swal.fire({
           icon: 'success',
           title: 'Creado con éxito',
         })
+        this.getTemas();
+        this.temaForm.reset;
         this.router.navigate(['/foro']);
       }
     },error=>{

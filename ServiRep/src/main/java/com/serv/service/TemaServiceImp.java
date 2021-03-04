@@ -28,11 +28,11 @@ public class TemaServiceImp implements TemaService{
 		
 		LocalDate date = LocalDate.now();
 
-		Set <Usuario> us = new HashSet<>();				
+		//Set <Usuario> us = new HashSet<>();				
 		Usuario usss = usuariorep.getOne(idusuario);		
-		us.add(usss);
+		//us.add(usss);
 		
-		Tema t = new Tema(tema.getAsunto(), tema.getDescripcion(), us, date);
+		Tema t = new Tema(tema.getAsunto(), tema.getDescripcion(), usss, date);
 		temarep.save(t);
 	}
 	
@@ -40,6 +40,12 @@ public class TemaServiceImp implements TemaService{
 	@Override
 	public List<Tema> getTemas() {		
 		return temarep.getTemas();
+	}
+
+	/*Abre el tema especifico*/
+	@Override
+	public Tema getTemaId(int idtema) {
+		return temarep.getTemaId(idtema);
 	}
 
 }

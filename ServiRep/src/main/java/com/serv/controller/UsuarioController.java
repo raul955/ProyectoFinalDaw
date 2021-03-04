@@ -38,6 +38,11 @@ public class UsuarioController {
 		return us.getUsuarios();
 	}
 	
+	@GetMapping("/ranking")
+	public List<Usuario> getRanking(){
+		return us.getRanking();
+	}
+	
 	@DeleteMapping("/borrarUsuario/{idusuario}")
 	public void borrarUsuario(@PathVariable Integer idusuario) {
 		us.borrarUsuario(idusuario);

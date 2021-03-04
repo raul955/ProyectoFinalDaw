@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -38,11 +39,11 @@ public class Ticket {
 	@Column(name = "estado")
 	private Estado es;
 
-	@ManyToMany(targetEntity = Usuario.class)
-	private Set<Usuario> usuarioCreador;
+	@ManyToOne(targetEntity = Usuario.class)
+	private Usuario usuarioCreador;
 	
-	@ManyToMany(targetEntity = Usuario.class)
-	private Set<Usuario> usuarioEmpleado;
+	@ManyToOne(targetEntity = Usuario.class)
+	private Usuario usuarioEmpleado;
 
 	@Column(name = "fechaCreacion")
 	private LocalDate fechaCreacion;
@@ -59,7 +60,7 @@ public class Ticket {
 
 	
 	
-	public Ticket(String asunto, String descripcion, Estado es, Set<Usuario> usuarioCreador, LocalDate fechaCreacion, String informacion) {
+	public Ticket(String asunto, String descripcion, Estado es, Usuario usuarioCreador, LocalDate fechaCreacion, String informacion) {
 		super();
 		this.asunto = asunto;
 		this.descripcion = descripcion;
@@ -70,7 +71,7 @@ public class Ticket {
 	}
 
 	public Ticket(Integer idticket, String asunto, String descripcion, String informacion, String comentarioemp,
-			String comentarious, Estado es, Set<Usuario> usuarioCreador, Set<Usuario> usuarioEmpleado,
+			String comentarious, Estado es, Usuario usuarioCreador, Usuario usuarioEmpleado,
 			LocalDate fechaCreacion, LocalDate fechaFinalizacion, int puntuacion) {
 		super();
 		this.idticket = idticket;
@@ -143,19 +144,19 @@ public class Ticket {
 		this.es = es;
 	}
 
-	public Set<Usuario> getUsuarioCreador() {
+	public Usuario getUsuarioCreador() {
 		return usuarioCreador;
 	}
 
-	public void setUsuarioCreador(Set<Usuario> usuarioCreador) {
+	public void setUsuarioCreador(Usuario usuarioCreador) {
 		this.usuarioCreador = usuarioCreador;
 	}
 
-	public Set<Usuario> getUsuarioEmpleado() {
+	public Usuario getUsuarioEmpleado() {
 		return usuarioEmpleado;
 	}
 
-	public void setUsuarioEmpleado(Set<Usuario> usuarioEmpleado) {
+	public void setUsuarioEmpleado(Usuario usuarioEmpleado) {
 		this.usuarioEmpleado = usuarioEmpleado;
 	}
 

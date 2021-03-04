@@ -1,10 +1,15 @@
-<h2>Gestión de incidencias</h2>
+<br/>
+<h3 align="center">Gestión de incidencias</h3>
+<br/>
 <form [formGroup]="todoform" class="form">
+
     <table class="table">
+
         <thead>
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Detalle</th>
+                <!--<th scope="col">Operario Asignado</th>-->
                 <th scope="col">Asignar Operario</th>
                 <th scope="col">Estado Actual</th>
                 <th scope="col">Cambiar Estado</th>
@@ -23,6 +28,9 @@
                 <td id="detalle" value="listaTicket.informacion">
                     {{listaTicket.informacion}}
                 </td>
+                <!--<td id="usuarioEmpleado" value="listaTicket.usuarioEmpleado.correo">
+                    {{listaTicket.usuarioEmpleado.correo}}
+                </td>-->
                 <td>
                     <select id="operario" formControlName="operario">
                         <option *ngFor="let listaUsuario of listaUsuarios" value="{{listaUsuario.correo}}">
@@ -60,5 +68,8 @@
 
             </tr>
         </tbody>
+
     </table>
+
 </form>
+<div style="height: 20rem;"></div>

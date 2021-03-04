@@ -1,6 +1,15 @@
-<h3>Mis Incidencias</h3>
+<br/>
+<br/>
+<h3 align="center" *ngIf="listaTickets[0] != null">Mis Tareas Asignadas</h3>
+<br/>
+<h3 align="center" *ngIf="listaTickets[0] == null">No tiene ninguna tarea a su nombre!</h3>
+<br/>
+<br/>
+<div align="center">
+    <img *ngIf="listaTickets[0] == null" src="https://www.freeiconspng.com/uploads/error-icon-3.png" />
+</div>
 
-<form [formGroup]="salvarForm" class="form">
+<form [formGroup]="salvarForm" class="form" *ngIf="listaTickets[0] != null">
     <table class="table">
         <thead>
             <tr>
@@ -9,8 +18,6 @@
                 <th scope="col">Cambiar Estado</th>
                 <th scope="col">Fecha Solicitud</th>
                 <th scope="col">Fecha Finalizacion</th>
-                <!--<th scope="col">Operario</th>
-                <th scope="col" style="display:none;">Operario</th>-->
                 <th scope="col">Comentario Cliente</th>
                 <th scope="col">Comentario Empleado</th>
                 <th scope="col">Opciones</th>
@@ -62,3 +69,4 @@
         </tbody>
     </table>
 </form>
+<div style="height: 23rem;"></div>

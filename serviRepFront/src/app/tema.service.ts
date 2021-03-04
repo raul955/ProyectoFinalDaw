@@ -21,5 +21,10 @@ export class TemaService {
   getTemas(): Observable<any> {
     return this.http.get<Tema>(`${this.url}getTemas`);
   }
+
+  /**Pasa el tema en el que se clicka a la vista personalizada */
+  getTemaId(idtema: number): Observable<any> {
+    return this.http.get<Tema>(`${this.url}getTemaId/${idtema}/`);
+  }
   
 }

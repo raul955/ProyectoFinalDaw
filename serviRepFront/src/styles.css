@@ -20,6 +20,19 @@
     -webkit-border-radius: 5px;
 }
 
+.fieldsett3 {
+    border: 1px solid;
+    padding: 50px;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+    -moz-border-radius: 200px;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+}
+
 
 /*login*/
 

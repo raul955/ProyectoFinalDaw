@@ -1,1 +1,20 @@
-<p>ranking works!</p>
+<br/>
+<h3 align="center">Ranking de operarios</h3>
+<br/>
+<div class="container">
+    <div class="row" id="card">
+        <div class="col-6 col-md-4 col-lg-3" *ngFor="let listausuario of listausuarios">
+            <div class="card" *ngIf="listausuario.calificacion">
+                <div align="center">
+                    <img src="https://i.ibb.co/pndGd8v/imagenoperario.png" style="width: 100px; height: auto;margin-top: 30px;">
+                </div>
+                <div class="card-body">
+                    <label><b>Nombre: </b></label> {{ listausuario.nombre }} <br/>
+                    <label><b>Apellidos: </b></label> {{ listausuario.apellidos }} <br/>
+                    <label><b>Calificación: </b></label> {{ listausuario.calificacion }} <br/>
+                </div>
+            </div>
+            <br/><br/>
+        </div>
+    </div>
+</div>

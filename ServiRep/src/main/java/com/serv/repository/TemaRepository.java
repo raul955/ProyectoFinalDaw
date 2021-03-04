@@ -15,6 +15,7 @@ public interface TemaRepository extends JpaRepository<Tema, Integer> {
 	@Query(value= "SELECT * FROM tema", nativeQuery = true)
 	List<Tema> getTemas();
 	
-	
+	@Query(value= "SELECT * FROM tema WHERE idtema = ?1" , nativeQuery = true)
+	Tema getTemaId(int idtema);
 
 }

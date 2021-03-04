@@ -12,6 +12,7 @@ import { MisticketsComponent } from './mistickets/mistickets.component';
 import { RankingComponent } from './ranking/ranking.component';
 import { RegistroComponent } from './registro/registro.component';
 import { VisualizartodoComponent } from './visualizartodo/visualizartodo.component';
+import { VisualizartemaComponent } from './visualizartema/visualizartema.component';
 
 
 const routes: Routes = [
@@ -26,7 +27,8 @@ const routes: Routes = [
   {path: 'ranking', component: RankingComponent},
   {path: 'consultartareas', component: VisualizartodoComponent},
   {path: 'mistickets', component: MisticketsComponent},
-  {path: 'admin', component: AdminComponent}
+  {path: 'admin', component: AdminComponent},
+  {path: 'visualizartema/:id', component: VisualizartemaComponent}
 ];
 
 @NgModule({

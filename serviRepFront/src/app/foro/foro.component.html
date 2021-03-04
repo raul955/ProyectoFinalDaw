@@ -1,5 +1,5 @@
 <br/>
-<h2 style="text-align: center;">Bienvenido a nuestro Foro!</h2>
+<h1 style="text-align: center;"><b>Bienvenido a nuestro Foro!</b></h1>
 <br/>
 <br/>
 <div class="container">
@@ -9,6 +9,7 @@
                 <th scope="col">Asunto</th>
                 <th scope="col">Autor</th>
                 <th scope="col">Fecha</th>
+                <th scope="col">Opciones</th>
             </tr>
         </thead>
 
@@ -19,13 +20,19 @@
                     {{listatema.asunto}}
                 </td>
                 <td>
-                    {{listatema.us[0].nick}}
+                    {{listatema.us.nick}}
                 </td>
                 <td>
                     {{listatema.fechaCreacion}}
                 </td>
+                <td>
+                    <button type="submit" class="btn btn-light" [routerLink]="['/', 'visualizartema', listatema.idtema]">
+                            Visitar
+                    </button>
+                </td>
             </tr>
         </tbody>
+
     </table>
     <br/>
 </div>

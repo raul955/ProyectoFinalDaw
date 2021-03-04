@@ -17,4 +17,5 @@ public interface UsuarioService {
 	
 	void modificaUsuario(Usuario usuario);
 	
+	List <Usuario> getRanking();
 }

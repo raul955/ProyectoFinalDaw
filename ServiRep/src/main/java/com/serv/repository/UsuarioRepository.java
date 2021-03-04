@@ -17,4 +17,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 	
 	@Query(value= "SELECT * FROM usuario", nativeQuery = true)
 	List <Usuario> getUsuarios();
+	
+	@Query(value= "SELECT * FROM usuario WHERE roll = 1 ORDER BY calificacion_media DESC;", nativeQuery = true)
+	List <Usuario> getRanking();
 }

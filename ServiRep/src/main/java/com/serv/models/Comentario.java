@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,11 +25,11 @@ public class Comentario {
 	@Column(name = "descripcion")
 	private String descripcion;
 
-	@ManyToMany(targetEntity = Usuario.class)
-	private Set<Usuario> us;
+	@ManyToOne(targetEntity = Usuario.class)
+	private Usuario us;
 	
-	@ManyToMany(targetEntity = Tema.class)
-	private Set<Tema> tema;
+	@ManyToOne(targetEntity = Tema.class)
+	private Tema tema;
 	
 	@Column(name = "fechaCreacion")
 	private LocalDate fechaCreacion;
@@ -37,10 +38,19 @@ public class Comentario {
 		super();
 	}
 
-	public Comentario(Integer idcomentario, String descripcion, Set<Usuario> us, Set<Tema> tema,
+	public Comentario(Integer idcomentario, String descripcion, Usuario us, Tema tema,
 			LocalDate fechaCreacion) {
 		super();
 		this.idcomentario = idcomentario;
+		this.descripcion = descripcion;
+		this.us = us;
+		this.tema = tema;
+		this.fechaCreacion = fechaCreacion;
+	}
+	
+	public Comentario(String descripcion, Usuario us, Tema tema,
+			LocalDate fechaCreacion) {
+		super();
 		this.descripcion = descripcion;
 		this.us = us;
 		this.tema = tema;
@@ -63,19 +73,19 @@ public class Comentario {
 		this.descripcion = descripcion;
 	}
 
-	public Set<Usuario> getUs() {
+	public Usuario getUs() {
 		return us;
 	}
 
-	public void setUs(Set<Usuario> us) {
+	public void setUs(Usuario us) {
 		this.us = us;
 	}
 
-	public Set<Tema> getTema() {
+	public Tema getTema() {
 		return tema;
 	}
 
-	public void setTema(Set<Tema> tema) {
+	public void setTema(Tema tema) {
 		this.tema = tema;
 	}
 

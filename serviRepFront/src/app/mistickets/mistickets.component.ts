@@ -22,8 +22,9 @@ export class MisticketsComponent implements OnInit {
 
   PENDIENTECONFIRMACION: string = "PENDIENTECONFIRMACION";
   listaTickets: Ticket[];
+  res: string = "RESUELTO";
   constructor( private inci: IncidenciaService, private us: UsuarioServiceService, private tick: TicketService ) { }
-
+   
   ngOnInit() {
     var temporal;
     temporal = JSON.parse(sessionStorage.getItem('user'));
@@ -45,6 +46,7 @@ export class MisticketsComponent implements OnInit {
   this.tick.agregarcomentarioycalificacion(this.t, idtickett, formulario.value.comentario, formulario.value.calificacion).subscribe(data =>{
     console.log(data); 
     if(data == null){
+      this.salvarForm.reset();
       Swal.fire({
         icon: 'success',
         title: 'Salvado con éxito',
@@ -54,7 +56,7 @@ export class MisticketsComponent implements OnInit {
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
-      text: 'Algo salió mal.',
+      text: 'Tienes que establecer una puntuación y un comentario.',
     })
   });
   }

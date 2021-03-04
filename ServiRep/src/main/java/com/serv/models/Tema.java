@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,8 +28,8 @@ public class Tema {
 	@Column(name = "descripcion")
 	private String descripcion;
 	
-	@ManyToMany(targetEntity = Usuario.class)
-	private Set<Usuario> us;
+	@ManyToOne(targetEntity = Usuario.class)
+	private Usuario us;
 	
 	@Column(name = "fechaCreacion")
 	private LocalDate fechaCreacion;
@@ -37,7 +38,7 @@ public class Tema {
 		super();
 	}
 	
-	public Tema(String asunto, String descripcion, Set<Usuario> us, LocalDate fechaCreacion) {
+	public Tema(String asunto, String descripcion, Usuario us, LocalDate fechaCreacion) {
 		super();
 		this.asunto = asunto;
 		this.descripcion = descripcion;
@@ -45,7 +46,7 @@ public class Tema {
 		this.fechaCreacion = fechaCreacion;
 	}
 
-	public Tema(Integer idtema, String asunto, String descripcion, Set<Usuario> us, LocalDate fechaCreacion) {
+	public Tema(Integer idtema, String asunto, String descripcion, Usuario us, LocalDate fechaCreacion) {
 		super();
 		this.idtema = idtema;
 		this.asunto = asunto;
@@ -78,11 +79,11 @@ public class Tema {
 		this.descripcion = descripcion;
 	}
 
-	public Set<Usuario> getUs() {
+	public Usuario getUs() {
 		return us;
 	}
 
-	public void setUs(Set<Usuario> us) {
+	public void setUs(Usuario us) {
 		this.us = us;
 	}
 

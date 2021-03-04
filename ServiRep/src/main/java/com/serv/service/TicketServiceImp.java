@@ -34,12 +34,12 @@ public class TicketServiceImp implements TicketService{
 	@Override
 	public void gestionTicket(Ticket ticket, int idticket, int idusuario) {
 		
-		Set <Usuario> us = new HashSet<>();	
+		//Set <Usuario> us = new HashSet<>();	
 		
 		Usuario u = usuariorep.getOne(idusuario);
 		Ticket tick = ticketrep.getOne(idticket);
 		
-		us.add(u);
+		//us.add(u);
 		
 		tick.setEs(ticket.getEs());
 		
@@ -49,7 +49,7 @@ public class TicketServiceImp implements TicketService{
 			tick.setFechaFinalizacion(date);
 		}
 		
-		tick.setUsuarioEmpleado(us);
+		tick.setUsuarioEmpleado(u);
 
 		ticketrep.save(tick);
 		
@@ -79,14 +79,23 @@ public class TicketServiceImp implements TicketService{
 	}
 	
 	
-	/*Añade comentario y calificacion a los tickets desde la vista del usuario*/
+	/*Añade comentario y calificacion a los tickets desde la vista del usuario y recalcula su media*/
 	@Override
 	public void añadirComentarioCalificacionTicket(int idticket, String comentario, int calificacion) {
 		
-		Ticket t = ticketrep.getOne(idticket);		
+		Ticket t = ticketrep.getOne(idticket);
 		t.setComentarious(comentario);
 		t.setPuntuacion(calificacion);
-		ticketrep.save(t);		
+		
+		ticketrep.save(t);	
+		
+		//Recalcular la puntuacion del operario
+		int idoperario = t.getUsuarioEmpleado().getIdusuario();
+		int nuevaPuntuacion = ticketrep.recalcularMedia(idoperario);		
+		Usuario u = usuariorep.getOne(idoperario);
+		u.setCalificacion(nuevaPuntuacion);		
+		usuariorep.save(u);
+				
 	}
 
 	/*Devuelve todos los tickets de la bbdd*/
@@ -99,20 +108,15 @@ public class TicketServiceImp implements TicketService{
 	public void crearTicket(Ticket ticket, int idincidencia, int idoperario) {
 	}
 
-	/*El usuario crea la incidencia*/
+	/*El usuario crea el ticket*/
 	@Override
 	public void crearTicketUsuario(Ticket ticket, int idusuario) {
 		
-		LocalDate date = LocalDate.now();
-
-		Set <Usuario> us = new HashSet<>();		
-		
+		LocalDate date = LocalDate.now();	
 		Usuario usss = usuariorep.getOne(idusuario);
-		
-		us.add(usss);
-		
+				
 		String informacion = ticket.getAsunto() +": " + ticket.getDescripcion(); 
-		Ticket tick = new Ticket(ticket.getAsunto(),ticket.getDescripcion(),ticket.getEs(),us, date, informacion);
+		Ticket tick = new Ticket(ticket.getAsunto(),ticket.getDescripcion(),ticket.getEs(),usss, date, informacion);
 		
 		ticketrep.save(tick);		
 	}

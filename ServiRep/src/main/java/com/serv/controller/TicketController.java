@@ -55,6 +55,7 @@ public class TicketController {
 		return tick.getTicketOperario(idusuario);
 	}
 	
+	/*Recupera todos los tickets*/
 	@GetMapping("/verTodosLosTickets")
 	public List<Ticket> getTodosLosTickets(){		
 		return tick.getTodosLosTicket();

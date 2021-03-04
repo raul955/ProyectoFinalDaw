@@ -1,0 +1,72 @@
+<br/>
+<br/>
+<h1 align="center"><b>Foro ServiRep</b></h1>
+<br/>
+<br/>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <span><b>Autor: {{tema.us.nick}}</b></span>
+            <span style="float: right;"><b>Fecha: {{tema.fechaCreacion}}</b></span>
+
+        </div>
+        <div class="card-body">
+            <p class="card-title"><b>Asunto: {{tema.asunto}}</b></p>
+            <p class="card-text">{{tema.descripcion}}</p>
+
+        </div>
+    </div>
+
+    <br/>
+</div>
+<div class="container" align="right" *ngFor="let listacomentario of listaComentarios">
+    <br/>
+    <div class="card  mb-3" style="max-width: 18rem;">
+        <div class="card-header">
+            <span style="float: left;">Autor: {{listacomentario.us.nick}}</span>
+            <span style="float: right;">Fecha: {{listacomentario.fechaCreacion}}</span>
+        </div>
+        <div class="card-body ">
+            <p class="card-text">{{listacomentario.descripcion}}</p>
+        </div>
+    </div>
+
+</div>
+<br/>
+
+<hr size="8px" color="black" width="75%" />
+<br/>
+<div class="container">
+    <div class="container">
+        <div class="container">
+            <div class="container">
+                <div style="width: auto;height: 300px;" class="container">
+                    <form [formGroup]="comentarioForm" class="form" (ngSubmit)="creaComentario(comentarioForm)">
+                        <fieldset class="fieldsett2">
+                            <div class="form-group">
+                                <label for="descripcion" style="float: left;">Escribe tu comentario</label>
+                                <textarea class="form-control" id="descripcion" rows="5" name="descripcion" formControlName="descripcion" placeholder="Escribe tu comentario..."></textarea>
+                                <div class="alert alert-warning" *ngIf="(descripcion.touched) && (descripcion.invalid)" style="margin-top: 5px;">
+                                    <span *ngIf="descripcion.errors.required">Debe completar este campo</span>
+                                    <span *ngIf="descripcion.errors.minlength">
+                        Este campo requiere un tamaño mínimo de {{descripcion.errors.minlength.requiredLength}} caracteres.
+                    </span>
+                                    <span *ngIf="descripcion.errors.maxlength">
+                        Este campo requiere un tamaño máximo de {{descripcion.errors.maxlength.requiredLength}} caracteres.
+                    </span>
+                                </div>
+                            </div>
+
+                            <button [disabled]="!comentarioForm.valid" type="submit" class="btn btn-success">Comentar</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>

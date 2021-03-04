@@ -37,8 +37,7 @@ public class UsuarioServiceImp implements UsuarioService{
 	}
 
 	@Override
-	public List<Usuario> getUsuarios() {
-		
+	public List<Usuario> getUsuarios() {		
 		return usuarioRepository.getUsuarios();
 	}
 
@@ -68,6 +67,12 @@ public class UsuarioServiceImp implements UsuarioService{
 		
 		usuarioRepository.save(u);
 		
+	}
+
+	/*Trae los operarios ordenados para el ranking*/
+	@Override
+	public List<Usuario> getRanking() {
+		return usuarioRepository.getRanking();
 	}
 
 }

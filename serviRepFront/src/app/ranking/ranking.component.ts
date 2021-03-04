@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from '../usuario';
+import { UsuarioServiceService } from '../usuario-service.service';
 
 @Component({
   selector: 'app-ranking',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RankingComponent implements OnInit {
 
-  constructor() { }
+  listausuarios: Usuario[];
+
+  constructor(private us: UsuarioServiceService) { }
 
   ngOnInit() {
+    this.getUsuariosRanking();
+  }
+
+  getUsuariosRanking(){
+
+    this.us.getRanking().subscribe(data => {
+      this.listausuarios = data;
+    });
   }
 
 }

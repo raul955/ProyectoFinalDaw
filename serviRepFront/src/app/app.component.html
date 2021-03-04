@@ -36,11 +36,6 @@
                     </li>
                 </div>
                 <div>
-                    <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == usuario || us.comprobarlogeado().roll.toString() == gestor || us.comprobarlogeado().roll.toString() == operario)">
-                        <a class="nav-link" routerLink="foro">Foro</a>
-                    </li>
-                </div>
-                <div>
                     <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == operario)">
                         <!--Gestor todas las tareas-->
                         <a class="nav-link" routerLink="visualizartodo">Visualizar Tareas</a>
@@ -56,6 +51,11 @@
                     <li class="nav-item" *ngIf="us.comprobarlogeado() != null && us.comprobarlogeado().roll.toString() == admin">
                         <!-- Admin gestiona usuarios -->
                         <a class="nav-link" routerLink="admin">Usuarios</a>
+                    </li>
+                </div>
+                <div>
+                    <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == usuario || us.comprobarlogeado().roll.toString() == gestor || us.comprobarlogeado().roll.toString() == operario)">
+                        <a class="nav-link" routerLink="foro">Foro</a>
                     </li>
                 </div>
             </ul>

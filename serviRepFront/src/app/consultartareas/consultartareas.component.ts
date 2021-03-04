@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { Ticket } from '../ticket';
 import { TicketService } from '../ticket.service';
 import { UsuarioServiceService } from '../usuario-service.service';
+import { Comentario } from '../comentario';
 
 @Component({
   selector: 'app-consultartareas',
@@ -26,6 +27,8 @@ export class ConsultartareasComponent implements OnInit {
     var temporal;
     temporal = JSON.parse(sessionStorage.getItem('user'));
     this.getTicketOperario(temporal.idusuario);
+    console.log(temporal);
+    console.log(this.getTicketOperario(temporal.idusuario));
   }
 
 
@@ -41,9 +44,13 @@ export class ConsultartareasComponent implements OnInit {
   salvarDatosEmpleado(idtickett: number, formulario){
 
     this.t.es = formulario.value.estado;
-    this.tick.agregarcomentarioyestado(this.t, idtickett, formulario.value.comentario).subscribe(data =>{
+    var comentario = formulario.value.comentario;
+    console.log(comentario);
+
+    this.tick.agregarcomentarioyestado(this.t, idtickett,comentario).subscribe(data =>{
       console.log(data); 
       if(data == null){
+        this.salvarForm.reset();
         Swal.fire({
           icon: 'success',
           title: 'Salvado con éxito',
@@ -53,7 +60,7 @@ export class ConsultartareasComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Algo salió mal.',
+        text: 'Tienes que establecer un Estado y un Comentario',
       })
     });
 
