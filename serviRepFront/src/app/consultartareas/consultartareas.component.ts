@@ -13,6 +13,7 @@ import { Comentario } from '../comentario';
 })
 export class ConsultartareasComponent implements OnInit {
 
+  pageActual = 1;
   t: Ticket = new Ticket();
   salvarForm = new FormGroup({
     comentario: new FormControl('', [Validators.required, Validators.minLength(6)]),

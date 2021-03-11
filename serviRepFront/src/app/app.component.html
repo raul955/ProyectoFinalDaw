@@ -11,71 +11,71 @@
             <ul class="navbar-nav">
                 <div>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/">Inicio</a>
+                        <a style="color: white;" class="nav-link" routerLink="/">Inicio</a>
                     </li>
                 </div>
                 <div>
                     <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == usuario || us.comprobarlogeado().roll.toString() == gestor || us.comprobarlogeado().roll.toString() == operario)">
                         <!-- Usuario visualiza su ticket -->
-                        <a class="nav-link" routerLink="mistickets">Mis Incidencias</a>
+                        <a style="color: white;" class="nav-link" routerLink="mistickets">Mis Incidencias</a>
                     </li>
                 </div>
                 <div>
                     <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == usuario || us.comprobarlogeado().roll.toString() == gestor || us.comprobarlogeado().roll.toString() == operario)">
-                        <a class="nav-link" routerLink="contacto">Contacto</a>
+                        <a style="color: white;" class="nav-link" routerLink="contacto">Contacto</a>
                     </li>
                 </div>
                 <div>
                     <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == gestor || us.comprobarlogeado().roll.toString() == operario)">
-                        <a class="nav-link" routerLink="ranking">Top Empleados</a>
+                        <a style="color: white;" class="nav-link" routerLink="ranking">Top Empleados</a>
                     </li>
                 </div>
                 <div>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="aboutus">About Us</a>
+                        <a style="color: white;" class="nav-link" routerLink="aboutus">About Us</a>
                     </li>
                 </div>
                 <div>
                     <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == operario)">
                         <!--Gestor todas las tareas-->
-                        <a class="nav-link" routerLink="visualizartodo">Visualizar Tareas</a>
+                        <a style="color: white;" class="nav-link" routerLink="visualizartodo">Visualizar Tareas</a>
                     </li>
                 </div>
                 <div>
                     <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == gestor)">
                         <!--Operario ver tareas modifica estado-->
-                        <a class="nav-link" routerLink="consultartareas">Gestionar Tickets</a>
+                        <a style="color: white;" class="nav-link" routerLink="consultartareas">Gestionar Tickets</a>
                     </li>
                 </div>
                 <div>
                     <li class="nav-item" *ngIf="us.comprobarlogeado() != null && us.comprobarlogeado().roll.toString() == admin">
                         <!-- Admin gestiona usuarios -->
-                        <a class="nav-link" routerLink="admin">Usuarios</a>
+                        <a style="color: white;" class="nav-link" routerLink="admin">Usuarios</a>
                     </li>
                 </div>
                 <div>
                     <li class="nav-item" *ngIf="us.comprobarlogeado() != null && (us.comprobarlogeado().roll.toString() == admin || us.comprobarlogeado().roll.toString() == usuario || us.comprobarlogeado().roll.toString() == gestor || us.comprobarlogeado().roll.toString() == operario)">
-                        <a class="nav-link" routerLink="foro">Foro</a>
+                        <a style="color: white;" class="nav-link" routerLink="foro">Foro</a>
                     </li>
                 </div>
             </ul>
         </div>
         <br/>
         <div class="registrarseDiv" *ngIf="us.comprobarlogeado() == null">
-            <a class="nav-link fuentenav" routerLink="login">Login</a>
+            <a class="nav-link fuentenav" style="color: white;" routerLink="login">Login</a>
         </div>
         <div class="registrarseDiv" *ngIf="us.comprobarlogeado() == null">
-            <a class="nav-link fuentenav" routerLink="registro">Registarse</a>
+            <a class="nav-link fuentenav" style="color: white;" routerLink="registro">Registarse</a>
         </div>
         <span style="color: #48C9B0;" *ngIf="us.comprobarlogeado() != null">Usuario: {{us.comprobarlogeado().nick.toString()}}</span>
         <div class="registrarseDiv" *ngIf="us.comprobarlogeado() != null">
-            <a class="nav-link fuentenav" routerLink="/" (click)="desconectarse()">Desconectarse</a>
+            <a class="nav-link fuentenav" style="color: white;" routerLink="/" (click)="desconectarse()">Desconectarse</a>
         </div>
     </nav>
 
     <router-outlet></router-outlet>
     <!-- Footer -->
-    <footer class="page-footer font-small mdb-color pt-4 colorFooter">
+    <!--<footer class="page-footer font-small mdb-color pt-4 colorFooter">
         <div class="container">
             <ul class="list-unstyled list-inline text-center">
                 <li class="list-inline-item">
@@ -96,5 +96,58 @@
             </ul>
         </div>
         <div class="footer-copyright text-center py-3">© 2020 Copyright</div>
+    </footer>-->
+    <footer>
+        <div class="content">
+            <div class="left box">
+                <div class="upper">
+                    <div class="topic">About us</div>
+                    <p>En ServiRep contamos con amplia experiencia al servicio de nuestros clientes. Estamos dedicados a realizar mantenimientos e instalaciones eléctricas.</p>
+                </div>
+                <div class="lower">
+                    <div class="topic">Contáctanos</div>
+                    <div class="phone">
+                        <span style="color: white;"><i class="fas fa-phone-volume"></i>+34 603 598 452</span>
+                    </div>
+                    <div class="email">
+                        <span style="color: white;"><i class="fas fa-envelope"></i>servirepsupport@servirep.com</span>
+                    </div>
+                </div>
+            </div>
+            <div class="middle box">
+                <div class="topic">Nuestros servicios</div>
+                <div>
+                    <p>- Asesoría a empresas</p>
+                </div>
+                <div>
+                    <p>- Mantenimiento de servidores</p>
+                </div>
+                <div>
+                    <p>- Reparación de electrodomésticos</p>
+                </div>
+                <div>
+                    <p>- Montaje e instaciónes</p>
+                </div>
+                <div>
+                    <p>- Mantenimiento de redes eléctricas</p>
+                </div>
+                <div>
+                    <p>- Suministro de materiales</p>
+                </div>
+            </div>
+            <div class="right box">
+                <div class="topic">Redes sociales</div>
+                <div class="media-icons">
+                    <a href="https://www.facebook.com" target=”_blank”><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com" target=”_blank”><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.twitter.com" target=”_blank”><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.youtube.com" target=”_blank”><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.linkedin.com" target=”_blank”><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <p>Copyright © 2020 <a routerLink="/">ServiRep</a> All rights reserved</p>
+        </div>
     </footer>
 </body>

@@ -12,5 +12,8 @@ public interface ComentarioService {
 	
 	/*Devuelve los comentarios correspondientes a cada tema*/
 	List<Comentario> getComentariosTemas(int idetema);
+	
+	/*Borra comentario*/
+	void borrarComentarioo(int idcomentario);
 
 }

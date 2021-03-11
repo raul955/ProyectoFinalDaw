@@ -1,69 +1,70 @@
 <br/>
 <br/>
-<h3 align="center" *ngIf="listaTickets[0] != null">Mis Incidencias</h3>
+<h1 style="text-align: center;" *ngIf="listaTickets[0] != null"><b>Mis Incidencias</b></h1>
 <br/>
-<h3 align="center" *ngIf="listaTickets[0] == null">No tiene ningún ticket a su nombre!</h3>
-<br/>
+<h1 align="center" *ngIf="listaTickets[0] == null"><b>No tiene ningún ticket a su nombre!</b></h1>
 <br/>
 <div align="center">
     <img *ngIf="listaTickets[0] == null" src="https://www.freeiconspng.com/uploads/error-icon-3.png" />
 </div>
 
 <form [formGroup]="salvarForm" class="form">
-    <table class="table" *ngIf="listaTickets[0] != null">
-        <thead>
-            <tr>
-                <th scope="col">Informacion</th>
-                <th scope="col">Estado</th>
-                <th scope="col">Fecha Solicitud</th>
-                <th scope="col">Fecha Finalización</th>
-                <th scope="col">Puntuar</th>
-                <th scope="col">Comentario</th>
-                <th scope="col">Opciones</th>
-            </tr>
-        </thead>
+    <div class="bordespp">
+        <table class="table table-responsive" *ngIf="listaTickets[0] != null">
+            <thead>
+                <tr>
+                    <th scope="col"><b>INFORMACIÓN</b></th>
+                    <th scope="col"><b>ESTADO</b></th>
+                    <th scope="col"><b>FECHA SOLICITUD</b></th>
+                    <th scope="col"><b>FECHA FINALIZACIÓN</b></th>
+                    <th scope="col"><b>PUNTUAR</b></th>
+                    <th scope="col"><b>COMENTARIO</b></th>
+                    <th scope="col"><b>OPCIONES</b></th>
+                </tr>
+            </thead>
+            <tbody>
 
-        <tbody>
-
-            <tr *ngFor="let listaTicket of listaTickets">
-                <td style="display:none;" value="listaTicket.idticket" id="idticket">
-                    {{listaTicket.idticket}}
-                </td>
-                <td>
-                    {{listaTicket.informacion}}
-                </td>
-                <td>
-                    {{listaTicket.es}}
-                </td>
-                <td>
-                    {{listaTicket.fechaCreacion}}
-                </td>
-                <td>
-                    {{listaTicket.fechaFinalizacion}}
-                </td>
-                <td>
-                    <select required formControlName="calificacion"> 
+                <tr *ngFor="let listaTicket of listaTickets | paginate: {itemsPerPage: 5, currentPage: pageActual}; let i = index">
+                    <td style="display:none;" value="listaTicket.idticket" id="idticket">
+                        {{listaTicket.idticket}}
+                    </td>
+                    <td>
+                        {{listaTicket.informacion}}
+                    </td>
+                    <td>
+                        {{listaTicket.es}}
+                    </td>
+                    <td>
+                        {{listaTicket.fechaCreacion}}
+                    </td>
+                    <td>
+                        {{listaTicket.fechaFinalizacion}}
+                    </td>
+                    <td>
+                        <select required formControlName="calificacion"> 
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="comentario" name="comentario" formControlName="comentario" placeholder="Escribe un comentario">
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="comentario" name="comentario" formControlName="comentario" placeholder="Escribe un comentario">
 
-                    </div>
-                </td>
-                <td>
-                    <button class="btn btn-success" (click)="salvarComentario(listaTicket.idticket, salvarForm)">
+                        </div>
+                    </td>
+                    <td>
+                        <button class="btn btn-success" (click)="salvarComentario(listaTicket.idticket, salvarForm)">
                     Salvar
                     </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
+    </div>
 </form>
 
 <div style="height: 23rem;"></div>

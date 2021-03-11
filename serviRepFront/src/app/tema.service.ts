@@ -26,5 +26,10 @@ export class TemaService {
   getTemaId(idtema: number): Observable<any> {
     return this.http.get<Tema>(`${this.url}getTemaId/${idtema}/`);
   }
+
+    /*Borra el tema */
+borrarTemaa(idTema: number):Observable<any> {
+  return this.http.delete(`${this.url}borrarTema/${idTema}`);
+}
   
 }

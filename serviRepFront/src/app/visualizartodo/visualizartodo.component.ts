@@ -13,6 +13,7 @@ import { UsuarioServiceService } from '../usuario-service.service';
 })
 export class VisualizartodoComponent implements OnInit {
 
+  pageActual = 1;
   t: Ticket = new Ticket();
   op: Usuario = new Usuario();
 

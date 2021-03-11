@@ -8,6 +8,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.serv.models.Comentario;
 import com.serv.models.Tema;
 import com.serv.models.Ticket;
 import com.serv.models.Usuario;
@@ -46,6 +47,12 @@ public class TemaServiceImp implements TemaService{
 	@Override
 	public Tema getTemaId(int idtema) {
 		return temarep.getTemaId(idtema);
+	}
+
+	@Override
+	public void borrarTemaa(int idtema) {
+		Tema t = temarep.getOne(idtema);		
+		temarep.delete(t);
 	}
 
 }

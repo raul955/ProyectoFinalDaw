@@ -1,9 +1,11 @@
 <br/>
-<h3 align="center">Ranking de operarios</h3>
+<br/>
+<h1 align="center"><b>Ranking de operarios</b></h1>
+<br/>
 <br/>
 <div class="container">
     <div class="row" id="card">
-        <div class="col-6 col-md-4 col-lg-3" *ngFor="let listausuario of listausuarios">
+        <div class="col-6 col-md-4 col-lg-3" *ngFor="let listausuario of listausuarios | paginate: {itemsPerPage: 8, currentPage: pageActual}; let i = index">
             <div class="card" *ngIf="listausuario.calificacion">
                 <div align="center">
                     <img src="https://i.ibb.co/pndGd8v/imagenoperario.png" style="width: 100px; height: auto;margin-top: 30px;">
@@ -17,4 +19,8 @@
             <br/><br/>
         </div>
     </div>
+    <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
+    <br/>
+    <br/>
 </div>
+<div style="height: 17rem;"></div>

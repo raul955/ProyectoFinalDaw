@@ -19,22 +19,33 @@
 
     <br/>
 </div>
-<div class="container" align="right" *ngFor="let listacomentario of listaComentarios">
-    <br/>
-    <div class="card  mb-3" style="max-width: 18rem;">
-        <div class="card-header">
-            <span style="float: left;">Autor: {{listacomentario.us.nick}}</span>
-            <span style="float: right;">Fecha: {{listacomentario.fechaCreacion}}</span>
-        </div>
-        <div class="card-body ">
-            <p class="card-text">{{listacomentario.descripcion}}</p>
-        </div>
-    </div>
+<div class="container">
+    <div class="container" align="right" *ngFor="let listacomentario of listaComentarios | paginate: {itemsPerPage: 5, currentPage: pageActual}; let i = index">
+        <br/>
+        <div class="card  mb-3" style="max-width: 18rem;">
+            <div class="card-header">
+                <span style="float: left;">Autor: {{listacomentario.us.nick}}</span>
+                <span style="float: right;">Fecha: {{listacomentario.fechaCreacion}}</span>
+            </div>
+            <div class="card-body ">
+                <p class="card-text">{{listacomentario.descripcion}}</p>
+            </div>
+            <br/>
 
+            <button class="btn btn-danger" *ngIf="temporal.roll == rola || listacomentario.us.nick == temporal.nick" (click)="borrarComentario(listacomentario.idcomentario)">
+                Borrar
+                </button>
+
+        </div>
+
+    </div>
+    <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
 </div>
 <br/>
 
-<hr size="8px" color="black" width="75%" />
+<div class="container">
+    <hr color="black" />
+</div>
 <br/>
 <div class="container">
     <div class="container">

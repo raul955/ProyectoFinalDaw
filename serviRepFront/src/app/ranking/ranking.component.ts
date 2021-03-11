@@ -9,6 +9,7 @@ import { UsuarioServiceService } from '../usuario-service.service';
 })
 export class RankingComponent implements OnInit {
 
+  pageActual = 1;
   listausuarios: Usuario[];
 
   constructor(private us: UsuarioServiceService) { }

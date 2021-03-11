@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.serv.models.Comentario;
 import com.serv.models.Tema;
+import com.serv.models.Ticket;
 import com.serv.models.Usuario;
 import com.serv.repository.ComentarioRepository;
 import com.serv.repository.TemaRepository;
@@ -42,6 +43,12 @@ public class ComentarioServiceImp implements ComentarioService{
 	@Override
 	public List<Comentario> getComentariosTemas(int idtema) {
 		return comenrep.getComentariosTemas(idtema);
+	}
+
+	@Override
+	public void borrarComentarioo(int idcomentario) {
+		Comentario t = comenrep.getOne(idcomentario);		
+		comenrep.delete(t);
 	}
 
 }

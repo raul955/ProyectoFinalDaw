@@ -38,7 +38,7 @@ public class TicketServiceImp implements TicketService{
 		
 		Usuario u = usuariorep.getOne(idusuario);
 		Ticket tick = ticketrep.getOne(idticket);
-		
+
 		//us.add(u);
 		
 		tick.setEs(ticket.getEs());

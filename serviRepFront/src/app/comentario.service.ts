@@ -21,4 +21,9 @@ export class ComentarioService {
   getComentariosTemas(idtema: number): Observable<any> {
     return this.http.get<Comentario>(`${this.url}getComentariosTemas/${idtema}/`);
   }
+
+  /*Borra el comentario */
+borrarComentarioo(idcomentario: number):Observable<any> {
+  return this.http.delete(`${this.url}borrarComentario/${idcomentario}`);
+}
 }

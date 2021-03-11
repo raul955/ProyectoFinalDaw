@@ -13,6 +13,7 @@ import { UsuarioServiceService } from '../usuario-service.service';
 })
 export class MisticketsComponent implements OnInit {
 
+    pageActual = 1;
     t: Ticket = new Ticket();
 
     salvarForm = new FormGroup({

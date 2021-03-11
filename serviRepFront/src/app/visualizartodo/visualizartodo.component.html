@@ -1,75 +1,74 @@
 <br/>
-<h3 align="center">Gestión de incidencias</h3>
+<br/>
+<h1 align="center"><b>Gestión de incidencias</b></h1>
 <br/>
 <form [formGroup]="todoform" class="form">
+    <div class="bordespp">
+        <table class="table table-responsive">
 
-    <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"><b>ID</b></th>
+                    <th scope="col"><b>DETALLE</b></th>
+                    <th scope="col"><b>ASIGNAR OPERARIO</b></th>
+                    <th scope="col"><b>ESTADO ACTUAL</b></th>
+                    <th scope="col"><b>CAMMBIAR ESTADO</b></th>
+                    <th scope="col"><b>FECHA DE SOLICITUD</b></th>
+                    <th scope="col"><b>FECHA DE FINALIZACIÓN</b></th>
+                    <th scope="col"><b>OPCIONES</b></th>
+                </tr>
+            </thead>
 
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Detalle</th>
-                <!--<th scope="col">Operario Asignado</th>-->
-                <th scope="col">Asignar Operario</th>
-                <th scope="col">Estado Actual</th>
-                <th scope="col">Cambiar Estado</th>
-                <th scope="col">Fecha Solicitud</th>
-                <th scope="col">Fecha Finalización</th>
-                <th scope="col">Opciones</th>
-            </tr>
-        </thead>
+            <tbody>
 
-        <tbody>
-
-            <tr *ngFor="let listaTicket of listaTickets">
-                <td id="idticket" value="listaTicket.idticket">
-                    {{listaTicket.idticket}}
-                </td>
-                <td id="detalle" value="listaTicket.informacion">
-                    {{listaTicket.informacion}}
-                </td>
-                <!--<td id="usuarioEmpleado" value="listaTicket.usuarioEmpleado.correo">
-                    {{listaTicket.usuarioEmpleado.correo}}
-                </td>-->
-                <td>
-                    <select id="operario" formControlName="operario">
+                <tr *ngFor="let listaTicket of listaTickets | paginate: {itemsPerPage: 5, currentPage: pageActual}; let i = index">
+                    <td id="idticket" value="listaTicket.idticket">
+                        {{listaTicket.idticket}}
+                    </td>
+                    <td id="detalle" value="listaTicket.informacion">
+                        {{listaTicket.informacion}}
+                    </td>
+                    <td>
+                        <select id="operario" formControlName="operario">
                         <option *ngFor="let listaUsuario of listaUsuarios" value="{{listaUsuario.correo}}">
                             <span *ngIf="listaUsuario.roll.toString() == operario">{{listaUsuario.correo}}</span>
                         </option>                                          
                     </select>
-                </td>
-                <td id="esss" value="listaTicket.es">
-                    {{listaTicket.es}}
-                </td>
-                <td id="estado">
-                    <select required formControlName="estado"> 
+                    </td>
+                    <td id="esss" value="listaTicket.es">
+                        {{listaTicket.es}}
+                    </td>
+                    <td id="estado">
+                        <select required formControlName="estado"> 
                         <option value="0" selected>ASIGNADO</option>
                         <option value="1">ENCURSO</option>
                         <option value="2">PENDIENTEEXTERNO</option>
                         <option value="3">RESUELTO</option>
                         <option value="4">PENDIENTECONFIRMACION</option>
                         </select>
-                </td>
-                <td id="detalle" value="listaTicket.fechaCreacion">
-                    {{listaTicket.fechaCreacion}}
-                </td>
-                <td id="detalle" value="listaTicket.fechaFinalizacion">
-                    {{listaTicket.fechaFinalizacion}}
-                </td>
+                    </td>
+                    <td id="detalle" value="listaTicket.fechaCreacion">
+                        {{listaTicket.fechaCreacion}}
+                    </td>
+                    <td id="detalle" value="listaTicket.fechaFinalizacion">
+                        {{listaTicket.fechaFinalizacion}}
+                    </td>
 
-                <td>
-                    <button class="btn btn-success" (click)="subirTicket(listaTicket.idticket, todoform)">
+                    <td>
+                        <button class="btn btn-success" (click)="subirTicket(listaTicket.idticket, todoform)">
                     Salvar
                     </button>
-                    <button class="btn btn-danger" (click)="borrarTicket(listaTicket.idticket)">
+                        <button class="btn btn-danger" (click)="borrarTicket(listaTicket.idticket)">
                         Borrar
                     </button>
-                </td>
+                    </td>
 
-            </tr>
-        </tbody>
+                </tr>
+            </tbody>
 
-    </table>
+        </table>
 
+        <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
+    </div>
 </form>
 <div style="height: 20rem;"></div>

@@ -12,8 +12,11 @@ import { TemaService } from '../tema.service';
 })
 export class ForoComponent implements OnInit {
 
+  pageActual = 1;
   tema: Tema = new Tema();
   listatemas: Tema[];
+  rola = "ADMIN";
+  temporal: any;
 
   temaForm = new FormGroup({
     asunto: new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -24,6 +27,7 @@ export class ForoComponent implements OnInit {
 
   ngOnInit() {
     this.getTemas();
+    this.temporal = JSON.parse(sessionStorage.getItem('user'));
   }
 
 
@@ -37,6 +41,25 @@ export class ForoComponent implements OnInit {
       this.listatemas = data;
       console.log(data);
       console.log(this.listatemas[0].us.nick);
+    });
+  }
+
+  borrarTema(idtema){
+    console.log("la id es "+idtema);
+    this.tem.borrarTemaa(idtema).subscribe(data => {
+      this.getTemas();
+      if (data === 1) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Comentario eliminado con éxito.'
+        });
+        this.getTemas();
+      } else if (data === 0) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Ups, algo salió mal'
+        });
+      }
     });
   }
 

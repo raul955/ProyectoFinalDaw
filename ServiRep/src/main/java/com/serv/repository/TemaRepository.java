@@ -12,7 +12,7 @@ import com.serv.models.Ticket;
 @Repository
 public interface TemaRepository extends JpaRepository<Tema, Integer> {
 
-	@Query(value= "SELECT * FROM tema", nativeQuery = true)
+	@Query(value= "SELECT * FROM tema ORDER BY fecha_creacion DESC", nativeQuery = true)
 	List<Tema> getTemas();
 	
 	@Query(value= "SELECT * FROM tema WHERE idtema = ?1" , nativeQuery = true)
