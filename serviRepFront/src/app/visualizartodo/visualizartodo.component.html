@@ -10,9 +10,10 @@
                 <tr>
                     <th scope="col"><b>ID</b></th>
                     <th scope="col"><b>DETALLE</b></th>
+                    <th scope="col"><b>OPERARIO ASIGNADO</b></th>
                     <th scope="col"><b>ASIGNAR OPERARIO</b></th>
                     <th scope="col"><b>ESTADO ACTUAL</b></th>
-                    <th scope="col"><b>CAMMBIAR ESTADO</b></th>
+                    <th scope="col"><b>CAMBIAR ESTADO</b></th>
                     <th scope="col"><b>FECHA DE SOLICITUD</b></th>
                     <th scope="col"><b>FECHA DE FINALIZACIÓN</b></th>
                     <th scope="col"><b>OPCIONES</b></th>
@@ -27,6 +28,9 @@
                     </td>
                     <td id="detalle" value="listaTicket.informacion">
                         {{listaTicket.informacion}}
+                    </td>
+                    <td id="opasignado" value="listaTicket.usuarioEmpleado.nombre">
+                        {{listaTicket.usuarioEmpleado.nombre}}
                     </td>
                     <td>
                         <select id="operario" formControlName="operario">

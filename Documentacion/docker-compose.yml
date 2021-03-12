@@ -1,0 +1,31 @@
+  
+version: '3'
+services:
+  db:
+   image: mysql
+   environment:
+     MYSQL_ROOT_PASSWORD: root
+   volumes:
+     - D:\docker:/app:rw
+   ports: 
+     - 3306:3306
+   container_name: servirep
+   
+  jenkins:
+      user: root
+      image: "jenkinsci/blueocean:1.23.1"
+      ports:
+        - "8085:8080"
+      volumes:
+        - D:\docker\jenkins_home:/app:rw
+
+  wildfly:
+    image: jboss/wildfly
+    volumes:
+      -  D:\docker\wildfly:/opt/jboss/wildfly/standalone/deployments
+    ports:
+      - 81:8080
+      - 9990:9990
+    container_name: wildfly
+
+    
