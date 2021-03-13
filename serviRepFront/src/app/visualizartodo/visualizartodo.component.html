@@ -22,7 +22,7 @@
 
             <tbody>
 
-                <tr *ngFor="let listaTicket of listaTickets | paginate: {itemsPerPage: 5, currentPage: pageActual}; let i = index">
+                <tr *ngFor="let listaTicket of listaTickets | paginate: {itemsPerPage: 4, currentPage: pageActual}; let i = index">
                     <td id="idticket" value="listaTicket.idticket">
                         {{listaTicket.idticket}}
                     </td>

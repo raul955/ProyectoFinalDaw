@@ -184,6 +184,7 @@ public class Ticket {
 		this.puntuacion = puntuacion;
 	}
 
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

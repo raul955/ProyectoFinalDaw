@@ -14,11 +14,12 @@ import { UsuarioServiceService } from '../usuario-service.service';
 export class MisticketsComponent implements OnInit {
 
     pageActual = 1;
+    estadoo = "PENDIENTECONFIRMACION";
     t: Ticket = new Ticket();
 
     salvarForm = new FormGroup({
     comentario: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    calificacion: new FormControl('', [Validators.required]),
+    calificacion: new FormControl('0', [Validators.required]),
   });
 
   PENDIENTECONFIRMACION: string = "PENDIENTECONFIRMACION";
@@ -37,17 +38,19 @@ export class MisticketsComponent implements OnInit {
    
     this.tick.getTicketUsuarios(id).subscribe(data => {
       this.listaTickets = data;
-      console.log(data);
-      console.log(this.listaTickets);
     });
   }
 
   salvarComentario(idtickett: number, formulario){
-
-  this.tick.agregarcomentarioycalificacion(this.t, idtickett, formulario.value.comentario, formulario.value.calificacion).subscribe(data =>{
-    console.log(data); 
+    console.log("primero: "+formulario.value.calificacion);
+    if(!formulario.value.calificacion){
+      formulario.value.calificacion == 0;
+    }
+  console.log(formulario.value.calificacion);
+  this.tick.agregarcomentarioycalificacion(this.t, idtickett, formulario.value.comentario, formulario.value.calificacion).subscribe(data =>{ 
     if(data == null){
       this.salvarForm.reset();
+      this.calificacionp.setValue(0);
       Swal.fire({
         icon: 'success',
         title: 'Salvado con éxito',
@@ -60,6 +63,10 @@ export class MisticketsComponent implements OnInit {
       text: 'Tienes que establecer una puntuación y un comentario.',
     })
   });
+  }
+
+  get calificacionp() {
+    return this.salvarForm.get('calificacion');
   }
 
 }

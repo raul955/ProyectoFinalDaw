@@ -32,14 +32,10 @@ public class TicketServiceImp implements TicketService{
 	
 	/*Gestion tickets asigna operario y estado*/
 	@Override
-	public void gestionTicket(Ticket ticket, int idticket, int idusuario) {
-		
-		//Set <Usuario> us = new HashSet<>();	
+	public void gestionTicket(Ticket ticket, int idticket, int idusuario) {	
 		
 		Usuario u = usuariorep.getOne(idusuario);
 		Ticket tick = ticketrep.getOne(idticket);
-
-		//us.add(u);
 		
 		tick.setEs(ticket.getEs());
 		
@@ -85,17 +81,22 @@ public class TicketServiceImp implements TicketService{
 		
 		Ticket t = ticketrep.getOne(idticket);
 		t.setComentarious(comentario);
-		t.setPuntuacion(calificacion);
+		if(calificacion == 0) {
+			ticketrep.save(t);
+		}else {
+			t.setPuntuacion(calificacion);			
+			ticketrep.save(t);
+		}
+			
 		
-		ticketrep.save(t);	
-		
-		//Recalcular la puntuacion del operario
-		int idoperario = t.getUsuarioEmpleado().getIdusuario();
-		int nuevaPuntuacion = ticketrep.recalcularMedia(idoperario);		
-		Usuario u = usuariorep.getOne(idoperario);
-		u.setCalificacion(nuevaPuntuacion);		
-		usuariorep.save(u);
-				
+		if(calificacion != 0) {
+			//Recalcular la puntuacion del operario
+			int idoperario = t.getUsuarioEmpleado().getIdusuario();
+			int nuevaPuntuacion = ticketrep.recalcularMedia(idoperario);		
+			Usuario u = usuariorep.getOne(idoperario);
+			u.setCalificacion(nuevaPuntuacion);		
+			usuariorep.save(u);
+		}			
 	}
 
 	/*Devuelve todos los tickets de la bbdd*/
