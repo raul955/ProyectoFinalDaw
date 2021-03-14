@@ -29,8 +29,10 @@
                     <td id="detalle" value="listaTicket.informacion">
                         {{listaTicket.informacion}}
                     </td>
-                    <td id="opasignado" value="listaTicket.usuarioEmpleado.nombre">
+                    <td id="opasignado">
+                        <span *ngIf="listaTicket.usuarioEmpleado != null">
                         {{listaTicket.usuarioEmpleado.nombre}}
+                    </span>
                     </td>
                     <td>
                         <select id="operario" formControlName="operario">

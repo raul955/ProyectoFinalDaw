@@ -9,64 +9,64 @@
 </div>
 
 <form [formGroup]="salvarForm" class="form">
-    <div class="container">
-        <div class="container bordespp">
-            <table class="table table-responsive" *ngIf="listaTickets[0] != null">
-                <thead>
-                    <tr>
-                        <th scope="col"><b>INFORMACIÓN</b></th>
-                        <th scope="col"><b>ESTADO</b></th>
-                        <th scope="col"><b>FECHA SOLICITUD</b></th>
-                        <th scope="col"><b>FECHA FINALIZACIÓN</b></th>
-                        <th scope="col"><b>PUNTUAR</b></th>
-                        <th scope="col"><b>COMENTARIO</b></th>
-                        <th scope="col"><b>OPCIONES</b></th>
-                    </tr>
-                </thead>
-                <tbody>
 
-                    <tr *ngFor="let listaTicket of listaTickets | paginate: {itemsPerPage: 5, currentPage: pageActual}; let i = index">
-                        <td style="display:none;" value="listaTicket.idticket" id="idticket">
-                            {{listaTicket.idticket}}
-                        </td>
-                        <td>
-                            {{listaTicket.informacion}}
-                        </td>
-                        <td>
-                            {{listaTicket.es}}
-                        </td>
-                        <td>
-                            {{listaTicket.fechaCreacion}}
-                        </td>
-                        <td>
-                            {{listaTicket.fechaFinalizacion}}
-                        </td>
-                        <td>
-                            <select *ngIf="listaTicket.es != 'PENDIENTECONFIRMACION'" required formControlName="calificacion"> 
+    <div class="bordespp">
+        <table class="table table-responsive" *ngIf="listaTickets[0] != null">
+            <thead>
+                <tr>
+                    <th scope="col"><b>INFORMACIÓN</b></th>
+                    <th scope="col"><b>ESTADO</b></th>
+                    <th scope="col"><b>FECHA SOLICITUD</b></th>
+                    <th scope="col"><b>FECHA FINALIZACIÓN</b></th>
+                    <th scope="col"><b>PUNTUAR</b></th>
+                    <th scope="col"><b>COMENTARIO</b></th>
+                    <th scope="col"><b>OPCIONES</b></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let listaTicket of listaTickets | paginate: {itemsPerPage: 5, currentPage: pageActual}; let i = index">
+                    <td style="display:none;" value="listaTicket.idticket" id="idticket">
+                        {{listaTicket.idticket}}
+                    </td>
+                    <td>
+                        {{listaTicket.informacion}}
+                    </td>
+                    <td>
+                        {{listaTicket.es}}
+                    </td>
+                    <td>
+                        {{listaTicket.fechaCreacion}}
+                    </td>
+                    <td>
+                        {{listaTicket.fechaFinalizacion}}
+                    </td>
+                    <td>
+                        <select *ngIf="listaTicket.es != 'PENDIENTECONFIRMACION'" required formControlName="calificacion"> 
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
                             <option value="5">5</option>
                             </select>
-                        </td>
-                        <td>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="comentario" name="comentario" formControlName="comentario" placeholder="Escribe un comentario">
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="comentario" name="comentario" formControlName="comentario" placeholder="Escribe un comentario">
 
-                            </div>
-                        </td>
-                        <td>
-                            <button class="btn btn-success" (click)="salvarComentario(listaTicket.idticket, salvarForm)">
+                        </div>
+                    </td>
+                    <td>
+                        <button class="btn btn-success" (click)="salvarComentario(listaTicket.idticket, salvarForm)">
                             Salvar
                         </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <pagination-controls *ngIf="listaTickets[0] != null" (pageChange)="pageActual = $event"></pagination-controls>
-        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination-controls *ngIf="listaTickets[0] != null" (pageChange)="pageActual = $event"></pagination-controls>
     </div>
+
 </form>
 
 <div style="height: 23rem;"></div>
