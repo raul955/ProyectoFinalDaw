@@ -1,0 +1,60 @@
+version: "3"
+services:
+  app:
+    image: "metz/wildfly"
+    environment:
+      - WILDFLY_USER=root
+      - WILDFLY_PASS=root
+      - DB_NAME=sample
+      - DB_USER=mysql
+      - DB_PASS=mysql
+      - DB_URI=db:3306
+    depends_on:
+      - db
+    ports:
+      - "8080:8080" # application
+      - "9990:9990" # admin console
+  db:
+    image: "mysql:latest"
+    environment:
+      - MYSQL_DATABASE=servirepv3
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=mysql
+      - MYSQL_ROOT_PASSWORD=supersecret
+    #volumes:
+     # - ./workdir/db/init/:/docker-entrypoint-initdb.d/ # init database
+      #- ./workdir/db/data/:/var/lib/mysql/              # data storage
+    ports:
+      - "3306:3306"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.0.1
+    restart: always
+    environment:
+      PMA_HOST: db
+    ports:
+      - "8085:80"
+    restart: always
+  frontend:
+    build:
+      context: .
+      dockerfile: front.Dockerfile
+    restart: always
+    ports: 
+        - "8082:80"
+        - "8083:443"
+  #backend:
+  #build:
+  #  context: .
+  #   dockerfile: back.Dockerfile
+  # depends_on:
+  #     - db
+  # ports:
+  #    - "8080:8080"
+  # restart: always
+  jenkins:
+      user: root
+      image: "jenkinsci/blueocean:1.23.1"
+      ports:
+        - "8089:8080"
+      volumes:
+        - D:\docker\jenkins_home:/app:rw  

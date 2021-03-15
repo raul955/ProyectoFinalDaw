@@ -8,7 +8,7 @@ import { Tema } from './tema';
 })
 export class TemaService {
 
-  private url = 'http://localhost:8080/tema/';
+  private url = 'http://localhost:8080/servirep/tema/';
 
   constructor(private http: HttpClient) {}
 

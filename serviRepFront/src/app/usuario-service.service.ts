@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class UsuarioServiceService {
 
-  private url = 'http://localhost:8080/usuario/';
+  private url = 'http://localhost:8080/servirep/usuario/';
   us: Usuario = new Usuario();
   usersesion: Usuario = new Usuario();
 

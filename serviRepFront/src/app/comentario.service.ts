@@ -10,7 +10,7 @@ export class ComentarioService {
 
   constructor(private http: HttpClient) { }
 
-  private url = 'http://localhost:8080/comentario/';
+  private url = 'http://localhost:8080/servirep/comentario/';
 
   /**Crea un nuevo comentario en el tema */
   crearComentario(comentario: Comentario, idusuario: number, idtema: number): Observable<any> {

@@ -9,7 +9,7 @@ import { Usuario } from './usuario';
 })
 export class TicketService {
 
-  private url = 'http://localhost:8080/ticket/';
+  private url = 'http://localhost:8080/servirep/ticket/';
 
   constructor(private http: HttpClient) { }
 
